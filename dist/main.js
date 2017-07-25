@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -85,21 +85,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	Author Tobias Koppers @sokra
 */
 // css base code, injected by the css-loader
-module.exports = function() {
+module.exports = function(useSourceMap) {
 	var list = [];
 
 	// return the list of modules as css string
 	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
 			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
+				return "@media " + item[2] + "{" + content + "}";
 			} else {
-				result.push(item[1]);
+				return content;
 			}
-		}
-		return result.join("");
+		}).join("");
 	};
 
 	// import a list of modules into the list
@@ -130,6 +128,34 @@ module.exports = function() {
 	};
 	return list;
 };
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
@@ -209,7 +235,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(19)
+var listToStyles = __webpack_require__(24)
 
 /*
 type StyleObject = {
@@ -416,13 +442,13 @@ function applyToTag (styleElement, obj) {
 
 
 /* styles */
-__webpack_require__(18)
+__webpack_require__(22)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(6),
+  __webpack_require__(10),
   /* template */
-  __webpack_require__(15),
+  __webpack_require__(18),
   /* scopeId */
   null,
   /* cssModules */
@@ -438,13 +464,13 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(16)
+__webpack_require__(23)
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(7),
   /* template */
-  __webpack_require__(13),
+  __webpack_require__(19),
   /* scopeId */
   null,
   /* cssModules */
@@ -460,13 +486,13 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(17)
+__webpack_require__(20)
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(8),
   /* template */
-  __webpack_require__(14),
+  __webpack_require__(16),
   /* scopeId */
   null,
   /* cssModules */
@@ -480,13 +506,43 @@ module.exports = Component.exports
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+/* styles */
+__webpack_require__(21)
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(9),
+  /* template */
+  __webpack_require__(17),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _EnhancedInput = __webpack_require__(3);
+
+var _EnhancedInput2 = _interopRequireDefault(_EnhancedInput);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
+  components: { EnhancedInput: _EnhancedInput2.default },
   model: {
     prop: 'checked'
   },
@@ -527,13 +583,6 @@ exports.default = {
     };
   },
 
-  computed: {
-    computedClass: function computedClass() {
-      var computedClass = 'enhancedCheck-' + this.subClass;
-      if (this.animate) computedClass += ' enhancedCheck-animate';
-      return computedClass;
-    }
-  },
   methods: {
     inputChange: function inputChange() {
       this.$emit('input', this.inputModel);
@@ -542,7 +591,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -551,7 +600,15 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _EnhancedInput = __webpack_require__(3);
+
+var _EnhancedInput2 = _interopRequireDefault(_EnhancedInput);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
+  components: { EnhancedInput: _EnhancedInput2.default },
   model: {
     prop: 'groupModel'
   },
@@ -560,14 +617,17 @@ exports.default = {
       type: Array,
       required: true
     },
+    value: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
     id: {
       default: 'enhancedCheckGroup'
     },
     name: {
       default: ''
-    },
-    value: {
-      default: true
     },
     groupModel: {
       default: function _default() {
@@ -599,6 +659,9 @@ exports.default = {
       inputModel: this.groupModel
     };
   },
+  mounted: function mounted() {
+    if (this.value.length === 0) this.value = this.label;
+  },
 
   computed: {
     inputList: function inputList() {
@@ -610,12 +673,14 @@ exports.default = {
         } else {
           idElmt = this.id + '_' + i;
         }
+        console.log('build', this.inputModel, this.valueList[i], this.inputModel.indexOf(this.valueList[i]) >= 0);
         var elmt = {
           id: idElmt,
           label: this.label[i],
           name: this.nameList[i],
           value: this.valueList[i],
-          disabled: this.disabledList[i]
+          disabled: this.disabledList[i],
+          checked: true
         };
         list.push(elmt);
       }
@@ -647,14 +712,21 @@ exports.default = {
       }
       return propValue;
     },
-    inputChange: function inputChange(value) {
+    inputChange: function inputChange(elmt) {
+      if (elmt.checked) {
+        this.inputModel.push(elmt.value);
+      } else {
+        var index = this.inputModel.indexOf(elmt.value);
+        if (index >= 0) this.inputModel.splice(index, 1);
+      }
+      console.log('received ', this.inputModel, elmt);
       this.$emit('input', this.inputModel);
     }
   }
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -756,7 +828,76 @@ exports.default = {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  model: {
+    prop: 'inputModel'
+  },
+  props: {
+    type: {
+      type: String,
+      default: 'checkbox'
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    id: {
+      type: String,
+      default: 'enhancedCheck'
+    },
+    inputModel: {
+      default: false
+    },
+    name: {
+      default: ''
+    },
+    value: {
+      default: ''
+    },
+    subClass: {
+      type: String,
+      default: 'default'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    animate: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      checkModel: this.inputModel
+    };
+  },
+
+  computed: {
+    computedClass: function computedClass() {
+      var computedClass = 'enhancedCheck-' + this.subClass;
+      if (this.animate) computedClass += ' enhancedCheck-animate';
+      return computedClass;
+    }
+  },
+  methods: {
+    inputChange: function inputChange() {
+      this.$emit('input', this.checkModel);
+    }
+  }
+};
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -766,15 +907,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _EnhancedCheck = __webpack_require__(3);
+var _EnhancedCheck = __webpack_require__(4);
 
 var _EnhancedCheck2 = _interopRequireDefault(_EnhancedCheck);
 
-var _EnhancedCheckGroup = __webpack_require__(4);
+var _EnhancedCheckGroup = __webpack_require__(5);
 
 var _EnhancedCheckGroup2 = _interopRequireDefault(_EnhancedCheckGroup);
 
-var _EnhancedCheckRadio = __webpack_require__(5);
+var _EnhancedCheckRadio = __webpack_require__(6);
 
 var _EnhancedCheckRadio2 = _interopRequireDefault(_EnhancedCheckRadio);
 
@@ -791,38 +932,10 @@ var plugin = {
 exports.default = plugin;
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)();
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
@@ -834,61 +947,85 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "enhancedCheck",
     class: _vm.computedClass
-  }, _vm._l((_vm.inputList), function(inputElmt) {
-    return _c('div', [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.inputModel),
-        expression: "inputModel"
-      }],
+  }, [_vm._l((_vm.inputList), function(inputElmt) {
+    return _c('div', [_c('enhanced-input', {
       attrs: {
         "type": "checkbox",
         "id": inputElmt.id,
         "name": inputElmt.name,
-        "disabled": inputElmt.disabled
-      },
-      domProps: {
         "value": inputElmt.value,
-        "checked": Array.isArray(_vm.inputModel) ? _vm._i(_vm.inputModel, inputElmt.value) > -1 : (_vm.inputModel)
+        "disabled": inputElmt.disabled,
+        "label": inputElmt.label,
+        "subClass": _vm.subClass,
+        "animate": _vm.animate,
+        "combine": _vm.combine
       },
       on: {
-        "change": function($event) {
-          _vm.inputChange()
-        },
-        "__c": function($event) {
-          var $$a = _vm.inputModel,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = inputElmt.value,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (_vm.inputModel = $$a.concat($$v))
-            } else {
-              $$i > -1 && (_vm.inputModel = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-            }
-          } else {
-            _vm.inputModel = $$c
-          }
+        "input": function($event) {
+          _vm.inputChange(inputElmt)
         }
+      },
+      model: {
+        value: (inputElmt.checked),
+        callback: function($$v) {
+          inputElmt.checked = $$v
+        },
+        expression: "inputElmt.checked"
       }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": inputElmt.id
-      }
-    }, [_vm._v(_vm._s(inputElmt.label))])])
-  }))
+    }), _vm._v("\n        // in group elmt " + _vm._s(inputElmt.checked) + "\n\n    ")], 1)
+  }), _vm._v("\n\n    // here i have " + _vm._s(_vm.inputModel) + "\n\n\n")], 2)
 },staticRenderFns: []}
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -930,19 +1067,44 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "enhancedCheck",
     class: _vm.computedClass
-  }, [_c('input', {
+  }, [(_vm.type === 'radio') ? _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.inputModel),
-      expression: "inputModel"
+      value: (_vm.checkModel),
+      expression: "checkModel"
+    }],
+    attrs: {
+      "type": "radio",
+      "id": _vm.id,
+      "name": _vm.name,
+      "disabled": _vm.disabled
+    },
+    domProps: {
+      "value": _vm.value,
+      "checked": _vm._q(_vm.checkModel, _vm.value)
+    },
+    on: {
+      "change": function($event) {
+        _vm.inputChange()
+      },
+      "__c": function($event) {
+        _vm.checkModel = _vm.value
+      }
+    }
+  }) : _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.checkModel),
+      expression: "checkModel"
     }],
     attrs: {
       "type": "checkbox",
@@ -952,26 +1114,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     domProps: {
       "value": _vm.value,
-      "checked": Array.isArray(_vm.inputModel) ? _vm._i(_vm.inputModel, _vm.value) > -1 : (_vm.inputModel)
+      "checked": Array.isArray(_vm.checkModel) ? _vm._i(_vm.checkModel, _vm.value) > -1 : (_vm.checkModel)
     },
     on: {
       "change": function($event) {
         _vm.inputChange()
       },
       "__c": function($event) {
-        var $$a = _vm.inputModel,
+        var $$a = _vm.checkModel,
           $$el = $event.target,
           $$c = $$el.checked ? (true) : (false);
         if (Array.isArray($$a)) {
           var $$v = _vm.value,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && (_vm.inputModel = $$a.concat($$v))
+            $$i < 0 && (_vm.checkModel = $$a.concat($$v))
           } else {
-            $$i > -1 && (_vm.inputModel = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            $$i > -1 && (_vm.checkModel = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
           }
         } else {
-          _vm.inputModel = $$c
+          _vm.checkModel = $$c
         }
       }
     }
@@ -979,37 +1141,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.id
     }
-  }, [_vm._v(_vm._s(_vm.label))])])
+  }, [_vm._v(_vm._s(_vm.label))]), _vm._v("\n    // unit input " + _vm._s(_vm.checkModel) + "\n")])
 },staticRenderFns: []}
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 19 */
+/***/ (function(module, exports) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(10);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("2026f8c4", content, true);
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('enhanced-input', {
+    attrs: {
+      "type": "checkbox",
+      "id": _vm.id,
+      "name": _vm.name,
+      "value": _vm.value,
+      "disabled": _vm.disabled,
+      "label": _vm.label,
+      "subClass": _vm.subClass,
+      "animate": _vm.animate
+    },
+    on: {
+      "input": function($event) {
+        _vm.inputChange()
+      }
+    },
+    model: {
+      value: (_vm.inputModel),
+      callback: function($$v) {
+        _vm.inputModel = $$v
+      },
+      expression: "inputModel"
+    }
+  }), _vm._v("\n    // in check " + _vm._s(_vm.inputModel) + "\n")], 1)
+},staticRenderFns: []}
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(11);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("978b9f8a", content, true);
-
-/***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -1019,10 +1186,49 @@ var content = __webpack_require__(12);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
+var update = __webpack_require__(2)("2026f8c4", content, true);
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(13);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("978b9f8a", content, true);
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(14);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("68014726", content, true);
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(15);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
 var update = __webpack_require__(2)("5695eb7a", content, true);
 
 /***/ }),
-/* 19 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /**

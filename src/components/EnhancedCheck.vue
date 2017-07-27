@@ -53,6 +53,11 @@
           inputModel: this.checked
         }
       },
+      watch: {
+        checked: function (newValue) {
+          this.inputModel = newValue
+        }
+      },
       computed: {
         computedClass () {
           let computedClass = 'enhancedCheck-' + this.subClass

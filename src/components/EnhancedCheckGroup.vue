@@ -61,6 +61,11 @@
           inputModel: this.groupModel
         }
       },
+      watch: {
+        groupModel: function (newValue) {
+          this.inputModel = newValue
+        }
+      },
       computed: {
         inputList () {
           let list = []
@@ -88,6 +93,9 @@
         },
         nameList () {
           return this.generateListFromProp(this.name)
+        },
+        valueList () {
+          return this.generateListFromProp(this.value)
         },
         disabledList () {
           return this.generateListFromProp(this.disabled)

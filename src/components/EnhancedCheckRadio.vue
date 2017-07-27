@@ -58,6 +58,11 @@
           inputModel: this.radioModel
         }
       },
+      watch: {
+        radioModel: function (newValue) {
+          this.inputModel = newValue
+        }
+      },
       computed: {
         inputList () {
           let list = []

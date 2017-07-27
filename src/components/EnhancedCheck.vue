@@ -1,7 +1,9 @@
 <template>
     <div class="enhancedCheck" :class="computedClass">
-        <input type="checkbox" :id="id" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel">
-        <label :for="id">{{ label }}</label>
+        <div>
+            <input type="checkbox" :id="id" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel">
+            <label :for="id">{{ label }}</label>
+        </div>
     </div>
 </template>
 

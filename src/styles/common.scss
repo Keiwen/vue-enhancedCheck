@@ -1,0 +1,124 @@
+@import './_variables.scss';
+@import './_mixins.scss';
+
+.enhancedCheck-inline {
+  display: inline;
+  div {
+    display: inline;
+  }
+}
+
+
+.enhancedCheck {
+  div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  label {
+    @include labelBorderRadius($radiusDefault 0 0 $radiusDefault);
+  }
+  input[type="radio"], input[type="checkbox"] {
+    display: none;
+    & + label {
+      @include colorLabel(color(default), color(ddefault));
+      border: 1px solid color(default);
+      color: inherit;
+      position: relative;
+      padding: $paddingVertical 5px $paddingVertical ($iconWidth + 5px);
+      cursor: pointer;
+      display: inline-block;
+      &:before {
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: $iconWidth;
+        background: color(ddefault);
+        text-indent: 8px;
+        padding: $paddingVertical 0 $paddingVertical 0;
+      }
+    }
+    &:disabled + label {
+      cursor: not-allowed;
+    }
+
+    &:not(:checked) {
+      & + label {
+        &:hover {
+          color: color(hdefault);
+          &:before {
+            color: color(default);
+          }
+        }
+      }
+
+    }
+
+  }
+  input[type="checkbox"] {
+    &:not(:checked) + label:hover:before {
+      content: $iconCheckbox;
+    }
+    &:checked + label:before {
+      content: $iconCheckbox;
+    }
+  }
+  input[type="radio"] {
+    &:not(:checked) + label:hover:before {
+      content: $iconRadio;
+    }
+    &:checked + label:before {
+      content: $iconRadio;
+    }
+  }
+  &.enhancedCheck-combine {
+    input[type="checkbox"] {
+      &:not(:checked) + label:hover:before {
+        content: $iconCombine;
+      }
+      &:checked + label:before {
+        content: $iconCombine;
+      }
+    }
+  }
+
+  &.enhancedCheck-primary {
+    input[type="radio"], input[type="checkbox"] {
+      @include colorLabel(color(primary), color(dprimary));
+    }
+  }
+  &.enhancedCheck-success {
+    input[type="radio"], input[type="checkbox"] {
+      @include colorLabel(color(success), color(dsuccess));
+    }
+  }
+  &.enhancedCheck-warning {
+    input[type="radio"], input[type="checkbox"] {
+      @include colorLabel(color(warning), color(dwarning));
+    }
+  }
+  &.enhancedCheck-danger {
+    input[type="radio"], input[type="checkbox"] {
+      @include colorLabel(color(danger), color(ddanger));
+    }
+  }
+
+  &.enhancedCheck-animate {
+    label {
+      transition: color 1s ease;
+      &:before {
+        transition: background-color 1s ease;
+      }
+    }
+  }
+
+  &.enhancedCheck-rounded {
+    label {
+      @include labelBorderRadius($radiusRound);
+    }
+  }
+
+}
+

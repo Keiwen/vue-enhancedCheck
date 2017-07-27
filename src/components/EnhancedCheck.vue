@@ -64,5 +64,7 @@
     }
 </script>
 
-<style>
+<style lang="scss" scoped>
+    @import '../styles/common.scss';
+
 </style>

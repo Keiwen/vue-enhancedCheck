@@ -73,9 +73,6 @@
           }
           return list
         },
-        valueList () {
-          return this.generateListFromProp(this.value)
-        },
         disabledList () {
           return this.generateListFromProp(this.disabled)
         },
@@ -102,5 +99,6 @@
     }
 </script>
 
-<style>
+<style lang="scss" scoped>
+    @import '../styles/common.scss';
 </style>

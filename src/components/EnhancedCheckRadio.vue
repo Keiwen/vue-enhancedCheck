@@ -44,6 +44,10 @@
           type: Boolean,
           default: false
         },
+        rounded: {
+          type: Boolean,
+          default: false
+        },
         animate: {
           type: Boolean,
           default: false
@@ -84,6 +88,7 @@
         computedClass () {
           let computedClass = 'enhancedCheck-' + this.subClass
           if (this.inline) computedClass += ' enhancedCheck-inline'
+          if (this.rounded) computedClass += ' enhancedCheck-rounded'
           if (this.animate) computedClass += ' enhancedCheck-animate'
           return computedClass
         }

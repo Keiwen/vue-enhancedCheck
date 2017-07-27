@@ -27,7 +27,8 @@
           default: 'enhancedCheckRadio'
         },
         value: {
-          default: ''
+          type: Array,
+          default: () => []
         },
         radioModel: {
           default: ''
@@ -63,10 +64,14 @@
             } else {
               idElmt = this.id + '_' + i
             }
+            let valueElmt = this.value[i]
+            if (typeof valueElmt === 'undefined') {
+              valueElmt = this.label[i]
+            }
             const elmt = {
               id: idElmt,
               label: this.label[i],
-              value: this.valueList[i],
+              value: valueElmt,
               disabled: this.disabledList[i]
             }
             list.push(elmt)

@@ -26,7 +26,8 @@
           default: ''
         },
         value: {
-          default: true
+          type: Array,
+          default: () => []
         },
         groupModel: {
           default: () => []
@@ -66,11 +67,15 @@
             } else {
               idElmt = this.id + '_' + i
             }
+            let valueElmt = this.value[i]
+            if (typeof valueElmt === 'undefined') {
+              valueElmt = this.label[i]
+            }
             const elmt = {
               id: idElmt,
               label: this.label[i],
               name: this.nameList[i],
-              value: this.valueList[i],
+              value: valueElmt,
               disabled: this.disabledList[i]
             }
             list.push(elmt)

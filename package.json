@@ -13,7 +13,7 @@
   "main": "dist/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/keiwen/enhanced-check.git"
+    "url": "https://github.com/Keiwen/vue-enhancedCheck.git"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",

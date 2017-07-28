@@ -103,3 +103,5 @@ Label is prefixed by 'dot' icon
 
 As classic radio buttons, model bound to value from checked input
 
+##Toggle button
+Work in progress

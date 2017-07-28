@@ -6,7 +6,10 @@ Enhanced checkboxes /radio input, component for vue 2+.
 > Based on first [enhancedCheck project](https://github.com/Keiwen/enhancedCheck) (CSS/JS)
 
 ## Global use
-- npm install (work in progress)
+- npm install
+```
+npm install --save vue-enhanced-check
+```
 - import in your component
 ```
 import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio } from 'vue-enhanced-check'

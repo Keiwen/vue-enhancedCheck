@@ -19,7 +19,7 @@ export default {
 }
 ```
 
-##Checkbox
+## Checkbox
 Label is prefixed by 'check' icon
 ```
 <enhanced-check label="Checkbox"></enhanced-check>
@@ -44,7 +44,7 @@ Label is prefixed by 'check' icon
 As a classic simple checkbox, model bound to check state: true or false
 
 
-##Checkbox group
+## Checkbox group
 ```
 <enhanced-check-group :label="['First', 'Second', 'Third']"></enhanced-check-group>
 ```
@@ -74,7 +74,7 @@ As a classic simple checkbox, model bound to check state: true or false
 As classic multiple checkboxes, model bound to array of value from checked input
 
 
-##Radio
+## Radio
 Label is prefixed by 'dot' icon
 ```
 <enhanced-check-radio :label="['Element A', 'Element B', 'Element C']" name="radiotest"></enhanced-check-radio>
@@ -103,5 +103,5 @@ Label is prefixed by 'dot' icon
 
 As classic radio buttons, model bound to value from checked input
 
-##Toggle button
+## Toggle button
 Work in progress

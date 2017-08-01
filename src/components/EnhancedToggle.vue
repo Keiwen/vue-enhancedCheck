@@ -32,11 +32,11 @@
         },
         labelOn: {
           type: String,
-          default: ''
+          default: 'On'
         },
         labelOff: {
           type: String,
-          default: ''
+          default: 'Off'
         },
         name: {
           default: ''

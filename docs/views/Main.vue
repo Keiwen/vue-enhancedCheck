@@ -144,7 +144,48 @@
 
         <fieldset>
             <legend>Checkbox toggle</legend>
-            <p><i>Work in progress...</i></p>
+
+            <enhanced-toggle :labelOn="tc_labelOn" :labelOff="tc_labelOff" :styleOn="tc_styleOn" :styleOff="tc_styleOff" v-model="tc_model"
+                            :disabled="tc_disabled" :rounded="tc_rounded">
+
+            </enhanced-toggle>
+            <br/>
+            Model: {{ tc_model }}
+
+            <hr/>
+
+            <label for="tc_labelOn">Label on:</label>
+            <input type="text" v-model="tc_labelOn" id="tc_labelOn"/>
+
+            <label for="tc_labelOff">Label off:</label>
+            <input type="text" v-model="tc_labelOff" id="tc_labelOff"/>
+
+            <label for="tc_model">Checked:</label>
+            <input type="checkbox" v-model="tc_model" id="tc_model"/>
+
+            <label for="tc_disabled">Disabled:</label>
+            <input type="checkbox" v-model="tc_disabled" id="tc_disabled"/>
+
+            <label for="tc_rounded">Rounded:</label>
+            <input type="checkbox" v-model="tc_rounded" id="tc_rounded"/>
+
+            <label for="tc_styleOn">Style on:</label>
+            <select v-model="tc_styleOn" id="tc_styleOn">
+                <option value="default">Default</option>
+                <option value="primary">Primary</option>
+                <option value="success">Success</option>
+                <option value="warning">Warning</option>
+                <option value="danger">Danger</option>
+            </select>
+
+            <label for="tc_styleOff">Style off:</label>
+            <select v-model="tc_styleOff" id="tc_styleOff">
+                <option value="default">Default</option>
+                <option value="primary">Primary</option>
+                <option value="success">Success</option>
+                <option value="warning">Warning</option>
+                <option value="danger">Danger</option>
+            </select>
 
 
         </fieldset>
@@ -154,10 +195,10 @@
 
 
 <script>
-  import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio } from '../../src/main'
+  import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle } from '../../src/main'
 
   export default {
-    components: { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio },
+    components: { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle },
     data () {
       return {
         sc_model: false,
@@ -184,7 +225,14 @@
         rc_rounded: true,
         rc_animate: true,
         rc_inline: false,
-        rc_subclass: 'success'
+        rc_subclass: 'success',
+        tc_model: false,
+        tc_labelOn: 'Mandatory',
+        tc_labelOff: 'Optional',
+        tc_disabled: false,
+        tc_rounded: true,
+        tc_styleOn: 'success',
+        tc_styleOff: 'danger'
       }
     }
   }

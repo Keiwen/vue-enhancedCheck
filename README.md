@@ -21,6 +21,9 @@ export default {
     methods: ...
 }
 ```
+- Enhanced elements use id.
+If you use more than one element on the same page,
+be sure to provide specific id to avoid collisions
 
 ## Checkbox
 Label is prefixed by 'check' icon
@@ -30,7 +33,8 @@ Label is prefixed by 'check' icon
 ```
 <enhanced-check :label="sc_label" :subClass="sc_subclass"
                 v-model="sc_model" :disabled="sc_disabled"
-                :rounded="sc_rounded" :animate="sc_animate">
+                :rounded="sc_rounded" :animate="sc_animate"
+                id="enhancedCheck" name="" value="">
 
 </enhanced-check>
 ```
@@ -39,6 +43,9 @@ Label is prefixed by 'check' icon
 | Prop | Type | Note
 | :--- | :--- | ---: |
 | `label` | `String` | **REQUIRED**: by design, label is a main part of the display |
+| `id` | `String` | id of input and associated label. 'enhancedCheck' by default. |
+| `name` | `String` | name of classic input. Empty by default |
+| `value` | `String` | value of classic input. Empty by default |
 | `subClass` | `String` | Same colors than bootstrap style, possible values are 'default', 'primary', 'success', 'warning', 'danger' |
 | `disabled` | `Boolean` | False by default. Prevent clic action but not direct model change |
 | `rounded` | `Boolean` | False by default. Rounded border style |
@@ -57,7 +64,8 @@ As a classic simple checkbox, model bound to check state: true or false
                       :disabled="gc_disabled" :rounded="gc_rounded"
                       :animate="gc_animate" :inline="gc_inline"
                       :combine="gc_combine"
-                      :value="[gc_val1, gc_val2, gc_val3]">
+                      :value="[gc_val1, gc_val2, gc_val3]"
+                      id="enhancedCheckGroup" name="">
     
 </enhanced-check-group>
 ```
@@ -67,6 +75,8 @@ As a classic simple checkbox, model bound to check state: true or false
 | :--- | :--- | ---: |
 | `label` | `Array` | **REQUIRED** |
 | `value` | `Array` | Value for each input. By default equal to label |
+| `id` | `String`/`Array` | id of input and associated label. 'enhancedCheckGroup' by default. If string provided, each element id will have a counter as suffix |
+| `name` | `String`/`Array` | name of classic input. Empty by default. Use array to specify different names |
 | `subClass` | `String` | *Same than checkbox* |
 | `disabled` | `Boolean` | *Same than checkbox* |
 | `rounded` | `Boolean` | *Same than checkbox* |
@@ -87,7 +97,7 @@ Label is prefixed by 'dot' icon
                       name="radiotest" :subClass="rc_subclass"
                       v-model="rc_model" :disabled="rc_disabled"
                       :rounded="rc_rounded" :animate="rc_animate"
-                      :inline="rc_inline"
+                      :inline="rc_inline" id="enhancedCheckRadio" 
                       :value="[rc_val1, rc_val2, rc_val3]">
 
 </enhanced-check-radio>
@@ -97,6 +107,8 @@ Label is prefixed by 'dot' icon
 | Prop | Type | Note
 | :--- | :--- | ---: |
 | `label` | `Array` | **REQUIRED** |
+| `name` | `String` | **REQUIRED** name of classic input. |
+| `id` | `String`/`Array` | id of input and associated label. 'enhancedCheckRadio' by default. If string provided, each element id will have a counter as suffix |
 | `value` | `Array` | Value for each input. By default equal to label |
 | `subClass` | `String` | *Same than checkbox* |
 | `disabled` | `Boolean` | *Same than checkbox* |

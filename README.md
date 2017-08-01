@@ -10,22 +10,29 @@ Enhanced checkboxes /radio input, component for vue 2+.
 ```
 npm install --save vue-enhanced-check
 ```
-- import in your component
+- import components
 ```
-import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio } from 'vue-enhanced-check'
+import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle } from 'vue-enhanced-check'
 ```
-- declare use
+or only one according to your needs
+```
+import { EnhancedCheck } from 'vue-enhanced-check'
+```
+- declare use or imported components in your vue script
 ```
 export default {
-    components: { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio },
+    components: { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle },
     methods: ...
 }
 ```
-- Enhanced elements use id.
-If you use more than one element on the same page,
-be sure to provide specific id to avoid collisions
+- Use components as described below
 
-## Checkbox
+**Enhanced elements use id.
+If you use more than one element on the same page,
+be sure to provide specific id to avoid collisions**
+
+## Components
+### Checkbox
 Label is prefixed by 'check' icon
 ```
 <enhanced-check label="Checkbox"></enhanced-check>
@@ -54,7 +61,7 @@ Label is prefixed by 'check' icon
 As a classic simple checkbox, model bound to check state: true or false
 
 
-## Checkbox group
+### Checkbox group
 ```
 <enhanced-check-group :label="['First', 'Second', 'Third']"></enhanced-check-group>
 ```
@@ -87,7 +94,7 @@ As a classic simple checkbox, model bound to check state: true or false
 As classic multiple checkboxes, model bound to array of value from checked input
 
 
-## Radio
+### Radio
 Label is prefixed by 'dot' icon
 ```
 <enhanced-check-radio :label="['Element A', 'Element B', 'Element C']" name="radiotest"></enhanced-check-radio>
@@ -118,8 +125,34 @@ Label is prefixed by 'dot' icon
 
 As classic radio buttons, model bound to value from checked input
 
-## Toggle button
-Work in progress
+### Toggle button
+Checkbox is replaced by 2 switching labels, for on and off states
+```
+<enhanced-toggle label="Checkbox"></enhanced-check>
+```
+```
+<enhanced-toggle :labelOn="tc_labelOn" :labelOff="tc_labelOff"
+                 :styleOn="tc_styleOn" :styleOff="tc_styleOff"
+                 v-model="tc_model"
+                 :disabled="tc_disabled" :rounded="tc_rounded"
+                 id="enhancedToggle" name="">
+</enhanced-toggle>
+```
+
+
+| Prop | Type | Note
+| :--- | :--- | ---: |
+| `labelOn` | `String` | Label display for 'on' state (checked). Default is 'On' |
+| `labelOff` | `String` | Label display for 'off' state (unchecked). Default is 'Off' |
+| `styleOn` | `String` | style for 'on' state (checked), see checkbox's subclass. Default is primary |
+| `styleOff` | `String` | style for 'off' state (unchecked), see checkbox's subclass. Default is default |
+| `id` | `String` | id of input and associated label. 'enhancedToggle' by default. |
+| `name` | `String` | *Same than checkbox* |
+| `value` | `String` | *Same than checkbox* |
+| `disabled` | `Boolean` | *Same than checkbox* |
+| `rounded` | `Boolean` | *Same than checkbox* |
+
+As a classic simple checkbox, model bound to check state: true or false
 
 ## Contribution
 - Fork the repository

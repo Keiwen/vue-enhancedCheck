@@ -108,3 +108,11 @@ As classic radio buttons, model bound to value from checked input
 
 ## Toggle button
 Work in progress
+
+## Contribution
+- Fork the repository
+- Run `npm install`
+- You can run `npm run dev`, site is at http://localhost:8081.
+- Do your stuff
+- When you're done, run `npm run build` command and commit your work for a pull request.
+

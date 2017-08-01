@@ -24,7 +24,7 @@
       border: 1px solid color(default);
       color: inherit;
       position: relative;
-      padding: $paddingVertical 5px $paddingVertical ($iconWidth + 5px);
+      padding: $paddingVertical $paddingHorizontal $paddingVertical ($iconWidth + $paddingHorizontal);
       cursor: pointer;
       display: inline-block;
       &:before {
@@ -107,9 +107,11 @@
 
   &.enhancedCheck-animate {
     label {
-      transition: color 1s ease;
+      transition: color $transitionTime ease;
+      -webkit-transition: color $transitionTime ease;
       &:before {
-        transition: background-color 1s ease;
+        transition: background-color $transitionTime ease;
+        -webkit-transition: background-color $transitionTime ease;
       }
     }
   }
@@ -119,6 +121,98 @@
       @include labelBorderRadius($radiusRound);
     }
   }
+
+}
+
+
+.enhancedToggle {
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+  height: 2em;
+  @include colorToggle(color(default), color(ddefault));
+  border: 1px solid color(border);
+  border-radius: $radiusDefault;
+
+  &.enhancedCheck-rounded {
+    border-radius: $radiusRound;
+  }
+
+  label {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    width: 200%;
+    transition: left $transitionTimeToggle;
+    -webkit-transition: left $transitionTimeToggle;
+  }
+
+  &.enhancedCheck-checked label {
+    left: 0;
+  }
+
+  &.enhancedCheck-disabled label {
+    cursor: not-allowed;
+  }
+
+  &.enhancedCheck-primary {
+    @include colorToggle(color(primary), color(dprimary));
+  }
+  &.enhancedCheck-success {
+    @include colorToggle(color(success), color(dsuccess));
+  }
+  &.enhancedCheck-warning {
+    @include colorToggle(color(warning), color(dwarning));
+  }
+  &.enhancedCheck-danger {
+    @include colorToggle(color(danger), color(ddanger));
+  }
+
+  .enhancedToggle-label {
+    padding: $paddingVertical $paddingHorizontal;
+    transition: background $transitionTimeToggle;
+    -webkit-transition: background $transitionTimeToggle;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: $radiusDefault;
+    color: inherit;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    text-align: center;
+
+    &.labelOn {
+      left: 0;
+      padding-right: $paddingHorizontal + 30px;
+    }
+    &.labelOff {
+      right: 0;
+      padding-left: $paddingHorizontal + 30px;
+    }
+  }
+
+  .enhancedToggle-switch {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    border: 1px solid color(border);
+    border-radius: $radiusDefault;
+    width: 20px;
+    z-index: 20;
+    background: white;
+  }
+
+  &.enhancedCheck-rounded {
+    .enhancedToggle-label,.enhancedToggle-switch {
+      border-radius: $radiusRound;
+    }
+  }
+
+
 
 }
 

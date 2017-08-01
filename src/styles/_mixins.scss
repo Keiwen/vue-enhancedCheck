@@ -15,6 +15,17 @@
   }
 }
 
+@mixin colorToggle($color, $colorDisabled) {
+  .enhancedToggle-label {
+    background: $color;
+    color:white;
+  }
+  &.enhancedCheck-disabled .enhancedToggle-label {
+    background: $colorDisabled;
+  }
+}
+
+
 @mixin labelBorderRadius($borderRadius) {
   border-radius: $borderRadius;
   &:before {

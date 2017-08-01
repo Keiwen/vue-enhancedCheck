@@ -1,4 +1,5 @@
 $colors: (
+        border: #51626f,
         default: #aaaaaa,
         ddefault: #dddddd,
         hdefault: #777777,
@@ -25,6 +26,10 @@ $radiusDefault: 3px;
 $radiusRound: 25px;
 $iconWidth: 30px;
 $paddingVertical: 5px;
+$paddingHorizontal: 5px;
+$paddingHorizontalToggle: 10px;
 $iconCheckbox: '\2714';
 $iconCombine: '\2795';
 $iconRadio: '\26AB';
+$transitionTime: 1s;
+$transitionTimeToggle: 0.5s;

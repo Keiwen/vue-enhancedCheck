@@ -1,7 +1,7 @@
 <template>
     <div class="enhancedCheck enhancedToggle" :class="computedClass" :style="style">
-        <label :for="id">
-            <input type="checkbox" :id="id" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel" />
+        <label :for="generatedId">
+            <input type="checkbox" :id="generatedId" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel" />
 
 
             <span class="enhancedToggle-label labelOn" ref="toggleLabelOn">{{ labelOn }}</span>
@@ -25,7 +25,7 @@
       props: {
         id: {
           type: String,
-          default: 'enhancedToggle'
+          default: ''
         },
         checked: {
           default: false
@@ -68,7 +68,8 @@
           initLabelMaxChar: 0,
           labelMaxWidth: 0,
           labelMaxChar: 0,
-          inputModel: this.checked
+          inputModel: this.checked,
+          generatedId: ''
         }
       },
       watch: {
@@ -83,6 +84,11 @@
         }
       },
       mounted () {
+        if (this.id === '') {
+          this.generatedId = 'enhancedToggle_' + Math.random().toString(36).substr(2, 9)
+        } else {
+          this.generatedId = this.id
+        }
         this.initLabelMaxWidth = this.getLabelMaxWidth();
         this.initLabelMaxChar = this.getLabelMaxChar();
         this.labelMaxWidth = this.initLabelMaxWidth;

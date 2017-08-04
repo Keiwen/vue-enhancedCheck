@@ -20,7 +20,7 @@
           required: true
         },
         id: {
-          default: 'enhancedCheckGroup'
+          default: ''
         },
         name: {
           default: ''
@@ -58,7 +58,15 @@
       },
       data () {
         return {
-          inputModel: this.groupModel
+          inputModel: this.groupModel,
+          generatedId: ''
+        }
+      },
+      mounted () {
+        if (this.id === '') {
+          this.generatedId = 'enhancedCheckGroup_' + Math.random().toString(36).substr(2, 9)
+        } else {
+          this.generatedId = this.id
         }
       },
       watch: {
@@ -71,10 +79,10 @@
           let list = []
           for (let i = 0; i < this.label.length; i++) {
             let idElmt = 0
-            if (Array.isArray(this.id)) {
-              idElmt = this.id[i]
+            if (Array.isArray(this.generatedId)) {
+              idElmt = this.generatedId[i]
             } else {
-              idElmt = this.id + '_' + i
+              idElmt = this.generatedId + '_' + i
             }
             let valueElmt = this.value[i]
             if (typeof valueElmt === 'undefined') {
@@ -112,13 +120,13 @@
       methods: {
         generateListFromProp (propValue) {
           if (!Array.isArray(propValue)) {
-            const elmtCount = this.id.length
+            const elmtCount = this.label.length
             if (elmtCount === 1) return [propValue]
             return new Array(elmtCount).fill(propValue)
           }
           return propValue
         },
-        inputChange (value) {
+        inputChange () {
           this.$emit('input', this.inputModel)
         }
       }

@@ -1,7 +1,7 @@
 <template>
     <div class="enhancedCheck" :class="computedClass">
         <div v-for="inputElmt in inputList">
-            <input type="radio" :id="inputElmt.id" :name="name" :value="inputElmt.value" :disabled="inputElmt.disabled" @change="inputChange()" v-model="inputModel">
+            <input type="radio" :id="inputElmt.id" :name="generatedName" :value="inputElmt.value" :disabled="inputElmt.disabled" @change="inputChange()" v-model="inputModel">
             <label :for="inputElmt.id">{{ inputElmt.label }}</label>
         </div>
 
@@ -21,10 +21,10 @@
         },
         name: {
           type: String,
-          required: true
+          default: ''
         },
         id: {
-          default: 'enhancedCheckRadio'
+          default: ''
         },
         value: {
           type: Array,
@@ -55,7 +55,21 @@
       },
       data () {
         return {
-          inputModel: this.radioModel
+          inputModel: this.radioModel,
+          generatedId: '',
+          generatedName: ''
+        }
+      },
+      mounted () {
+        if (this.id === '') {
+          this.generatedId = 'enhancedCheckRadio_' + Math.random().toString(36).substr(2, 9)
+        } else {
+          this.generatedId = this.id
+        }
+        if (this.name === '') {
+          this.generatedName = this.generatedId
+        } else {
+          this.generatedName = this.name
         }
       },
       watch: {
@@ -68,10 +82,10 @@
           let list = []
           for (let i = 0; i < this.label.length; i++) {
             let idElmt = 0
-            if (Array.isArray(this.id)) {
-              idElmt = this.id[i]
+            if (Array.isArray(this.generatedId)) {
+              idElmt = this.generatedId[i]
             } else {
-              idElmt = this.id + '_' + i
+              idElmt = this.generatedId + '_' + i
             }
             let valueElmt = this.value[i]
             if (typeof valueElmt === 'undefined') {
@@ -101,7 +115,7 @@
       methods: {
         generateListFromProp (propValue) {
           if (!Array.isArray(propValue)) {
-            const elmtCount = this.id.length
+            const elmtCount = this.label.length
             if (elmtCount === 1) return [propValue]
             return new Array(elmtCount).fill(propValue)
           }

@@ -1,8 +1,8 @@
 <template>
     <div class="enhancedCheck" :class="computedClass">
         <div>
-            <input type="checkbox" :id="id" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel">
-            <label :for="id">{{ label }}</label>
+            <input type="checkbox" :id="generatedId" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel">
+            <label :for="generatedId">{{ label }}</label>
         </div>
     </div>
 </template>
@@ -20,7 +20,7 @@
         },
         id: {
           type: String,
-          default: 'enhancedCheck'
+          default: ''
         },
         checked: {
           default: false
@@ -50,7 +50,15 @@
       },
       data () {
         return {
-          inputModel: this.checked
+          inputModel: this.checked,
+          generatedId: ''
+        }
+      },
+      mounted () {
+        if (this.id === '') {
+          this.generatedId = 'enhancedCheck_' + Math.random().toString(36).substr(2, 9)
+        } else {
+          this.generatedId = this.id
         }
       },
       watch: {

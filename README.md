@@ -1,6 +1,7 @@
 # vue-enhanced-check
 
 Enhanced checkboxes /radio input, component for vue 2+.
+
 [Live demo here](https://keiwen.github.io/vue-enhancedCheck/)
 
 > Based on first [enhancedCheck project](https://github.com/Keiwen/enhancedCheck) (CSS/JS)
@@ -27,10 +28,6 @@ export default {
 ```
 - Use components as described below
 
-**Enhanced elements use id.
-If you use more than one element on the same page,
-be sure to provide specific id to avoid collisions**
-
 ## Components
 ### Checkbox
 Label is prefixed by 'check' icon
@@ -50,7 +47,7 @@ Label is prefixed by 'check' icon
 | Prop | Type | Note
 | :--- | :--- | ---: |
 | `label` | `String` | **REQUIRED**: by design, label is a main part of the display |
-| `id` | `String` | id of input and associated label. 'enhancedCheck' by default. |
+| `id` | `String` | id of input and associated label. |
 | `name` | `String` | name of classic input. Empty by default |
 | `value` | `String` | value of classic input. Empty by default |
 | `subClass` | `String` | Same colors than bootstrap style, possible values are 'default', 'primary', 'success', 'warning', 'danger' |
@@ -82,8 +79,8 @@ As a classic simple checkbox, model bound to check state: true or false
 | :--- | :--- | ---: |
 | `label` | `Array` | **REQUIRED** |
 | `value` | `Array` | Value for each input. By default equal to label |
-| `id` | `String`/`Array` | id of input and associated label. 'enhancedCheckGroup' by default. If string provided, each element id will have a counter as suffix |
-| `name` | `String`/`Array` | name of classic input. Empty by default. Use array to specify different names |
+| `id` | `String`/`Array` | id of input and associated label. If string provided, each element id will have a counter as suffix |
+| `name` | `String`/`Array` | name of classic input. Use array to specify different names |
 | `subClass` | `String` | *Same than checkbox* |
 | `disabled` | `Boolean` | *Same than checkbox* |
 | `rounded` | `Boolean` | *Same than checkbox* |
@@ -97,7 +94,7 @@ As classic multiple checkboxes, model bound to array of value from checked input
 ### Radio
 Label is prefixed by 'dot' icon
 ```
-<enhanced-check-radio :label="['Element A', 'Element B', 'Element C']" name="radiotest"></enhanced-check-radio>
+<enhanced-check-radio :label="['Element A', 'Element B', 'Element C']"></enhanced-check-radio>
 ```
 ```
 <enhanced-check-radio :label="['Element A', 'Element B', 'Element C']"
@@ -114,8 +111,8 @@ Label is prefixed by 'dot' icon
 | Prop | Type | Note
 | :--- | :--- | ---: |
 | `label` | `Array` | **REQUIRED** |
-| `name` | `String` | **REQUIRED** name of classic input. |
-| `id` | `String`/`Array` | id of input and associated label. 'enhancedCheckRadio' by default. If string provided, each element id will have a counter as suffix |
+| `name` | `String` | name of classic input. |
+| `id` | `String`/`Array` | id of input and associated label. If string provided, each element id will have a counter as suffix |
 | `value` | `Array` | Value for each input. By default equal to label |
 | `subClass` | `String` | *Same than checkbox* |
 | `disabled` | `Boolean` | *Same than checkbox* |
@@ -146,7 +143,7 @@ Checkbox is replaced by 2 switching labels, for on and off states
 | `labelOff` | `String` | Label display for 'off' state (unchecked). Default is 'Off' |
 | `styleOn` | `String` | style for 'on' state (checked), see checkbox's subclass. Default is primary |
 | `styleOff` | `String` | style for 'off' state (unchecked), see checkbox's subclass. Default is default |
-| `id` | `String` | id of input and associated label. 'enhancedToggle' by default. |
+| `id` | `String` | id of input and associated label. |
 | `name` | `String` | *Same than checkbox* |
 | `value` | `String` | *Same than checkbox* |
 | `disabled` | `Boolean` | *Same than checkbox* |

@@ -135,6 +135,8 @@
   @include colorToggle(color(default), color(ddefault));
   border: 1px solid color(border);
   border-radius: $radiusDefault;
+  margin-top: 5px;
+  margin-bottom: 5px;
 
   &.enhancedCheck-rounded {
     border-radius: $radiusRound;

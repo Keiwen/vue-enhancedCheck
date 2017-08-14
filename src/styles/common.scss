@@ -36,8 +36,8 @@
         content: '';
         width: $iconWidth;
         background: color(ddefault);
-        text-indent: 8px;
-        padding: $paddingVertical 0 $paddingVertical 0;
+        text-align: center;
+        padding-top: ($paddingVertical - $iconPaddingTop);
       }
     }
     &:disabled + label {

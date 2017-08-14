@@ -37,7 +37,7 @@
         width: $iconWidth;
         background: color(ddefault);
         text-align: center;
-        padding-top: ($paddingVertical - $iconPaddingTop);
+        line-height: 200%;
       }
     }
     &:disabled + label {

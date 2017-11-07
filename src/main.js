@@ -1,12 +1,12 @@
 // import EnhancedInput from './EnhancedInput.vue'
-const EnhancedCheck = require('./components/EnhancedCheck.vue')
-const EnhancedCheckGroup = require('./components/EnhancedCheckGroup.vue')
-const EnhancedCheckRadio = require('./components/EnhancedCheckRadio.vue')
-const EnhancedToggle = require('./components/EnhancedToggle.vue')
+import EnhancedCheck from './components/EnhancedCheck.vue'
+import EnhancedCheckGroup from './components/EnhancedCheckGroup.vue'
+import EnhancedCheckRadio from './components/EnhancedCheckRadio.vue'
+import EnhancedToggle from './components/EnhancedToggle.vue'
 
-module.exports = {
-  EnhancedCheck: EnhancedCheck,
-  EnhancedCheckGroup: EnhancedCheckGroup,
-  EnhancedCheckRadio: EnhancedCheckRadio,
-  EnhancedToggle: EnhancedToggle
+export {
+	EnhancedCheck,
+	EnhancedCheckGroup,
+	EnhancedCheckRadio,
+	EnhancedToggle
 }

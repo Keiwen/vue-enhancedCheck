@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var MinifyPlugin = require('babel-minify-webpack-plugin')
 
 // Determine which env to use
 // by having it overriden at runtime using `cross-env NODE_ENV=...`
@@ -15,59 +16,68 @@ if (process.env.NODE_ENV) {
 console.log('ENV', node_env)
 
 module.exports = {
-	resolveLoader: {
-		root: path.join(__dirname, 'node_modules'),
-	},
-
 	resolve: {
 		alias: {
 			'vue$': 'vue/dist/vue.js',
 		},
 
-		extensions: ['', '.js', '.vue']
+		extensions: ['.js', '.vue']
 	},
 
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.vue$/,
-				loader: 'vue'
+				use: 'vue-loader'
 			},
 			{
 				test: /\.css$/,
-				loader: 'style-loader!css-loader'
+				use: [
+					'style-loader',
+					'css-loader'
+				]
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['style', 'css', 'sass']
+				use: [
+					'style-loader',
+					'css-loader',
+					'sass-loader'
+				]
 			},
 			{
 				test: /\.js$/,
-				loader: 'babel',
-				exclude: /node_modules/
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [['env', {
+							targets: {
+								browsers: ['last 2 versions', '>= 3%', 'not ie <= 10'],
+								uglify: true
+							},
+							modules: false,
+							forceAllTransforms: node_env === 'production'
+						}]]
+					}
+				}
 			},
 			{
 				test: /\.svg$/,
-				loader: 'svg-inline?classPrefix'
-			},
-			{
-				test: /\.json$/,
-				loader: 'json'
+				use: 'svg-inline-loader?classPrefix'
 			},
 			{
 				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'file',
-				query: {
-					name: '[name].[ext]?[hash]'
-				}
+				use: [
+					{
+						loader: 'file-loader',
+						query: {
+							name: '[name].[ext]?[hash]'
+						}
+					}
+				]
 			}
 		],
-	},
-
-	vue: {
-		loaders: {
-			scss: 'vue-style!css!sass'
-		}
 	},
 
 	plugins: [
@@ -89,13 +99,9 @@ module.exports = {
 
 if (node_env == 'production') {
 	module.exports.devtool = '#source-map'
-	// http://vue-loader.vuejs.org/en/workflow/production.html
 	module.exports.plugins = module.exports.plugins.concat([
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false
-			}
+		new MinifyPlugin({}, {
+			comments: false
 		})
 	])
 }

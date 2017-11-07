@@ -5,6 +5,7 @@ Enhanced checkboxes /radio input, component for vue 2+.
 [Live demo here](https://keiwen.github.io/vue-enhancedCheck/)
 
 > Based on first [enhancedCheck project](https://github.com/Keiwen/enhancedCheck) (CSS/JS)
+> Issue with ES2015 -> switch away in version 1.4
 
 ## Global use
 - npm install

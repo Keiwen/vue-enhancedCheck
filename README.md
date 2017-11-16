@@ -1,4 +1,6 @@
 # vue-enhanced-check
+[![npm](https://img.shields.io/npm/v/vue-enhanced-check.svg)](https://www.npmjs.com/package/vue-flickity)
+[![npm](https://img.shields.io/npm/dt/vue-enhanced-check.svg)](https://www.npmjs.com/package/vue-flickity)
 
 Enhanced checkboxes /radio input, component for vue 2+.
 

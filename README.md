@@ -10,6 +10,8 @@ Enhanced checkboxes /radio input, component for vue 2+.
 
 > Issue with ES2015 -> switch away in version 1.4
 
+> Issue with bootstrap 3.3 on toggle component -> style fix in version 1.5
+
 ## Global use
 - npm install
 ```
@@ -129,7 +131,7 @@ As classic radio buttons, model bound to value from checked input
 ### Toggle button
 Checkbox is replaced by 2 switching labels, for on and off states
 ```
-<enhanced-toggle label="Checkbox"></enhanced-check>
+<enhanced-toggle></enhanced-check>
 ```
 ```
 <enhanced-toggle :labelOn="tc_labelOn" :labelOff="tc_labelOff"

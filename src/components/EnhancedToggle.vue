@@ -92,8 +92,7 @@
         this.initLabelMaxWidth = this.getLabelMaxWidth();
         this.initLabelMaxChar = this.getLabelMaxChar();
         this.labelMaxWidth = this.initLabelMaxWidth;
-        this.labelMaxChar = this.initLabelMaxChar;
-        this.computeStyle()
+        this.labelMaxChar = this.initLabelMaxChar;        this.computeStyle()
       },
       computed: {
         computedClass () {
@@ -133,6 +132,8 @@
             '--switchPos': (this.labelMaxWidth + HORIZONTAL_PADDING) + 'px',
             '--toggleWidth': (this.labelMaxWidth + SWITCH_WIDTH/2 + HORIZONTAL_PADDING) + 'px'
           }
+
+          console.log('pouet', this.style)
         }
       }
     }
@@ -155,5 +156,18 @@
         }
     }
 
+    // !!! Style completely broken with bootstrap !!!
+    // following style is canceling bootstrap style
+    // seems that no effect without bootstrap
+    * {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+
+    label {
+        max-width: none;
+        margin-bottom: 0;
+    }
 
 </style>

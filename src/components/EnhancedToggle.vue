@@ -132,8 +132,6 @@
             '--switchPos': (this.labelMaxWidth + HORIZONTAL_PADDING) + 'px',
             '--toggleWidth': (this.labelMaxWidth + SWITCH_WIDTH/2 + HORIZONTAL_PADDING) + 'px'
           }
-
-          console.log('pouet', this.style)
         }
       }
     }

@@ -11,6 +11,7 @@
 <script>
 
     export default {
+      name: 'EnhancedCheckRadio',
       model: {
         prop: 'radioModel'
       },

@@ -11,6 +11,7 @@
 <script>
 
     export default {
+      name: 'EnhancedCheckGroup',
       model: {
         prop: 'groupModel'
       },

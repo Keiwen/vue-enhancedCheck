@@ -19,6 +19,7 @@
   const HORIZONTAL_PADDING = 10
 
     export default {
+      name: 'EnhancedToggle',
       model: {
         prop: 'checked'
       },

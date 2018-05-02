@@ -1,6 +1,6 @@
 {
   "name": "vue-enhanced-check",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "enhanced-check component for vue 2",
   "author": "Keiwen <keiwen.mk@gmail.com>",
   "private": false,
@@ -10,7 +10,8 @@
     "build-src": "webpack --config src/webpack.config.js --progress --hide-modules",
     "build-docs": "webpack --config docs/webpack.config.js --progress --hide-modules"
   },
-  "main": "src/main.js",
+  "main": "dist/vue-enhanced-check.js",
+  "module": "src/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Keiwen/vue-enhancedCheck.git"
@@ -26,7 +27,7 @@
   ],
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.1",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-preset-env": "^1.6.1",
     "cross-env": "^1.0.6",
@@ -39,13 +40,13 @@
     "style-loader": "^0.13.2",
     "svg-inline-loader": "^0.7.1",
     "unindent": "^2.0.0",
-    "vue": "^2.4.4",
+    "vue": "^2.5.16",
     "vue-highlightjs": "^1.1.0",
-    "vue-loader": "^13.0.5",
+    "vue-loader": "^13.7.1",
     "vue-style-loader": "^1.0.0",
-    "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.3",
-    "webpack-merge": "^4.1.0"
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.2",
+    "webpack-merge": "^4.1.2"
   }
 }

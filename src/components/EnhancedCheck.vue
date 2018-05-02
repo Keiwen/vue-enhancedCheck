@@ -10,6 +10,7 @@
 <script>
 
     export default {
+      name: 'EnhancedCheck',
       model: {
         prop: 'checked'
       },

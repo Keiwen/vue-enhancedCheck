@@ -1,6 +1,6 @@
 {
   "name": "vue-enhanced-check",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "enhanced-check component for vue 2",
   "author": "Keiwen <keiwen.mk@gmail.com>",
   "private": false,
@@ -17,6 +17,8 @@
     "url": "https://github.com/Keiwen/vue-enhancedCheck.git"
   },
   "dependencies": {
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.0",
     "vue": "^2.1.10"
   },
   "keywords": [
@@ -34,8 +36,6 @@
     "css-loader": "^0.14.5",
     "file-loader": "^0.8.4",
     "imports-loader": "^0.6.5",
-    "node-sass": "^4.5.3",
-    "sass-loader": "^6.0.6",
     "script-loader": "^0.7.0",
     "style-loader": "^0.13.2",
     "svg-inline-loader": "^0.7.1",

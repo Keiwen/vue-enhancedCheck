@@ -8,5 +8,7 @@ module.exports = merge.smart(require(path.resolve(__dirname, '../conf/webpack.js
     path: path.resolve(__dirname, '../dist'),
     publicPath: path.resolve(__dirname, '../dist'),
     filename: 'vue-enhanced-check.js'
-  }
+  },
+
+  devtool: '#eval-source-map'
 })

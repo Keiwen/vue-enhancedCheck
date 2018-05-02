@@ -6,11 +6,12 @@ Enhanced checkboxes /radio input, component for vue 2+.
 
 [Live demo here](https://keiwen.github.io/vue-enhancedCheck/)
 
+*Note that unicode is used for 'icons'. Therefore design can change according to your browser. It is still possible to override CSS style with '!important' instruction (checked and hover styles)*
+
+- **Issue with ES2015** -> switch away in version 1.4
+- **Issue with bootstrap 3.3 on toggle component** -> style fix in version 1.5
+
 > Based on first [enhancedCheck project](https://github.com/Keiwen/enhancedCheck) (CSS/JS)
-
-> Issue with ES2015 -> switch away in version 1.4
-
-> Issue with bootstrap 3.3 on toggle component -> style fix in version 1.5
 
 ## Global use
 - npm install

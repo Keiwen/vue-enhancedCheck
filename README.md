@@ -159,7 +159,7 @@ Checkbox is replaced by 2 switching labels, for on and off states
 As a classic simple checkbox, model bound to check state: true or false
 
 ## Override style
-You can define your own check color by adding a sepcific style
+You can define your own check color by adding a specific style
 
 For example, let's define a 'custom' sub class.
 ```

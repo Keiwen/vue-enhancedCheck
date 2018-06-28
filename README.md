@@ -158,6 +158,48 @@ Checkbox is replaced by 2 switching labels, for on and off states
 
 As a classic simple checkbox, model bound to check state: true or false
 
+## Override style
+You can define your own check color by adding a sepcific style
+
+For example, let's define a 'custom' sub class.
+```
+<enhanced-check label="Custom" subClass="custom"></enhanced-check>
+```
+
+Checkbox will get the class 'enhancedCheck-custom', that you can use in your CSS.
+Simple override for checkboxes:
+```
+.enhancedCheck.enhancedCheck-custom input[type="checkbox"]:checked + label:before {
+  background: fuchsia;
+  color: white;
+}
+.enhancedCheck.enhancedCheck-custom input[type="checkbox"]:not(:checked) + label:hover {
+  border-color: fuchsia;
+}
+```
+
+Full less sample:
+```
+.enhancedCheck.enhancedCheck-custom {
+  input[type="radio"], input[type="checkbox"] {
+    &:checked + label:before {
+      background: $color;
+      color: white;
+    }
+    &:not(:checked) + label:hover {
+      border: 1px solid $color;
+    }
+    &:checked:disabled + label:before {
+      background: $color-disabled;
+    }
+    &:not(:checked):disabled + label:hover {
+      border: 1px solid $color-disabled;
+    }
+  }
+}
+```
+
+
 ## Contribution
 - Fork the repository
 - Run `npm install`

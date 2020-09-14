@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import MainView from './views/Main'
+import MainView from './views/Main.vue'
 
 new Vue({
   components: {

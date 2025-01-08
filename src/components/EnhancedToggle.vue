@@ -65,6 +65,7 @@ const computedClass = computed(() => {
   }
   if (props.rounded) computedClass += ' enhancedCheck-rounded'
   if (props.animate) computedClass += ' enhancedCheck-animate'
+  if (props.disabled) computedClass += ' enhancedCheck-disabled'
   return computedClass
 })
 

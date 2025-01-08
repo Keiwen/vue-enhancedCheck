@@ -17,15 +17,7 @@ const props = defineProps({
 const inputModel = ref(false)
 const generatedId = ref('')
 
-const emit = defineEmits(['update:modelValue', 'input'])
-
-// computed
-const computedClass = computed(() => {
-  let computedClass = 'enhancedCheck-' + props.subClass
-  if (props.rounded) computedClass += ' enhancedCheck-rounded'
-  if (props.animate) computedClass += ' enhancedCheck-animate'
-  return computedClass
-})
+const emit = defineEmits(['update:modelValue'])
 
 onMounted(async () => {
   if (props.id === '') {
@@ -33,6 +25,15 @@ onMounted(async () => {
   } else {
     generatedId.value = props.id
   }
+  inputModel.value = props.modelValue
+})
+
+// computed
+const computedClass = computed(() => {
+  let computedClass = 'enhancedCheck-' + props.subClass
+  if (props.rounded) computedClass += ' enhancedCheck-rounded'
+  if (props.animate) computedClass += ' enhancedCheck-animate'
+  return computedClass
 })
 
 // methods

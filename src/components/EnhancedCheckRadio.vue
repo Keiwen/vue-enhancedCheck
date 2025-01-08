@@ -1,133 +1,101 @@
-<template>
-    <div class="enhancedCheck" :class="computedClass">
-        <div v-for="inputElmt in inputList" :key="inputElmt">
-            <input type="radio" :id="inputElmt.id" :name="generatedName" :value="inputElmt.value" :disabled="inputElmt.disabled" @change="inputChange()" v-model="inputModel">
-            <label :for="inputElmt.id">{{ inputElmt.label }}</label>
-        </div>
+<script setup>
+import { ref, computed, onMounted, watch, defineProps, defineEmits } from 'vue'
 
-    </div>
-</template>
+const props = defineProps({
+  modelValue: String,
+  label: { type: Array, required: true },
+  id: { default: '' },
+  name: { type: String, default: '' },
+  value: { type: Array, default: () => [] },
+  subClass: { type: String, default: 'default' },
+  disabled: { default: false },
+  inline: { type: Boolean, default: false },
+  rounded: { type: Boolean, default: false },
+  animate: { type: Boolean, default: false }
+})
 
-<script>
+const radioModel = ref('')
+const generatedId = ref('')
+const generatedName = ref('')
 
-export default {
-  name: 'EnhancedCheckRadio',
-  model: {
-    prop: 'radioModel'
-  },
-  props: {
-    label: {
-      type: Array,
-      required: true
-    },
-    name: {
-      type: String,
-      default: ''
-    },
-    id: {
-      default: ''
-    },
-    value: {
-      type: Array,
-      default: () => []
-    },
-    radioModel: {
-      default: ''
-    },
-    subClass: {
-      type: String,
-      default: 'default'
-    },
-    disabled: {
-      default: false
-    },
-    inline: {
-      type: Boolean,
-      default: false
-    },
-    rounded: {
-      type: Boolean,
-      default: false
-    },
-    animate: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data () {
-    return {
-      inputModel: this.radioModel,
-      generatedId: '',
-      generatedName: ''
-    }
-  },
-  mounted () {
-    if (this.id === '') {
-      this.generatedId = 'enhancedCheckRadio_' + Math.random().toString(36).substr(2, 9)
-    } else {
-      this.generatedId = this.id
-    }
-    if (this.name === '') {
-      this.generatedName = this.generatedId
-    } else {
-      this.generatedName = this.name
-    }
-  },
-  watch: {
-    radioModel: function (newValue) {
-      this.inputModel = newValue
-    }
-  },
-  computed: {
-    inputList () {
-      const list = []
-      for (let i = 0; i < this.label.length; i++) {
-        let idElmt = 0
-        if (Array.isArray(this.generatedId)) {
-          idElmt = this.generatedId[i]
-        } else {
-          idElmt = this.generatedId + '_' + i
-        }
-        let valueElmt = this.value[i]
-        if (typeof valueElmt === 'undefined') {
-          valueElmt = this.label[i]
-        }
-        const elmt = {
-          id: idElmt,
-          label: this.label[i],
-          value: valueElmt,
-          disabled: this.disabledList[i]
-        }
-        list.push(elmt)
-      }
-      return list
-    },
-    disabledList () {
-      return this.generateListFromProp(this.disabled)
-    },
-    computedClass () {
-      let computedClass = 'enhancedCheck-' + this.subClass
-      if (this.inline) computedClass += ' enhancedCheck-inline'
-      if (this.rounded) computedClass += ' enhancedCheck-rounded'
-      if (this.animate) computedClass += ' enhancedCheck-animate'
-      return computedClass
-    }
-  },
-  methods: {
-    generateListFromProp (propValue) {
-      if (!Array.isArray(propValue)) {
-        const elmtCount = this.label.length
-        if (elmtCount === 1) return [propValue]
-        return new Array(elmtCount).fill(propValue)
-      }
-      return propValue
-    },
-    inputChange () {
-      this.$emit('input', this.inputModel)
-    }
+const emit = defineEmits(['update:modelValue'])
+
+onMounted(async () => {
+  if (props.id === '') {
+    generatedId.value = 'enhancedCheckRadio_' + Math.random().toString(36).substr(2, 9)
+  } else {
+    generatedId.value = props.id
   }
+  if (props.name === '') {
+    generatedName.value = generatedId.value
+  } else {
+    generatedName.value = props.name
+  }
+  radioModel.value = props.modelValue
+})
+
+watch(() => props.modelValue, (newValue, oldValue) => {
+  if (newValue !== radioModel.value) radioModel.value = newValue
+})
+
+// computed
+const computedClass = computed(() => {
+  let computedClass = 'enhancedCheck-' + props.subClass
+  if (props.inline) computedClass += ' enhancedCheck-inline'
+  if (props.rounded) computedClass += ' enhancedCheck-rounded'
+  if (props.animate) computedClass += ' enhancedCheck-animate'
+  return computedClass
+})
+const disabledList = computed(() => generateListFromProp(props.disabled))
+const inputList = computed(() => {
+  const list = []
+  for (let i = 0; i < props.label.length; i++) {
+    let idElmt = 0
+    if (Array.isArray(generatedId.value)) {
+      idElmt = generatedId.value[i]
+    } else {
+      idElmt = generatedId.value + '_' + i
+    }
+    let valueElmt = props.value[i]
+    if (typeof valueElmt === 'undefined') {
+      valueElmt = props.label[i]
+    }
+    const elmt = {
+      id: idElmt,
+      label: props.label[i],
+      value: valueElmt,
+      checked: props.modelValue.includes(valueElmt)
+    }
+    list.push(elmt)
+  }
+  return list
+})
+
+// methods
+const inputChange = () => {
+  emit('update:modelValue', radioModel.value)
 }
+
+const generateListFromProp = (propValue) => {
+  if (!Array.isArray(propValue)) {
+    const elmtCount = props.label.length
+    if (elmtCount === 1) return [propValue]
+    return new Array(elmtCount).fill(propValue)
+  }
+  return propValue
+}
+
 </script>
+
+<template>
+  <div class="enhancedCheck" :class="computedClass">
+    <div v-for="(inputElmt, indexElmt) in inputList" :key="indexElmt">
+      <input type="radio" :id="inputElmt.id" :name="generatedName" :value="inputElmt.value" :disabled="disabledList[indexElmt]" @change="inputChange()" v-model="radioModel" :checked="inputElmt.checked">
+      <label :for="inputElmt.id">{{ inputElmt.label }}</label>
+    </div>
+
+  </div>
+</template>
 
 <style lang="scss" scoped>
     @import '../styles/common.scss';

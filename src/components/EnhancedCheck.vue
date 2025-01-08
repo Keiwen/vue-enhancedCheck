@@ -51,7 +51,7 @@ const inputChange = () => {
   <div class="enhancedCheck" :class="computedClass">
     <div>
       <input type="checkbox" :id="generatedId" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel" :checked="modelValue">
-      <label :for="generatedId">{{ label }} and {{ inputModel }}</label>
+      <label :for="generatedId">{{ label }}</label>
     </div>
   </div>
 </template>

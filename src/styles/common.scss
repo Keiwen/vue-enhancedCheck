@@ -1,5 +1,5 @@
-@import './_variables.scss';
-@import './_mixins.scss';
+@use './variables.scss' as *;
+@use './mixins.scss' as *;
 
 .enhancedCheck-inline {
   display: inline;
@@ -20,8 +20,8 @@
   input[type="radio"], input[type="checkbox"] {
     display: none;
     & + label {
-      @include colorLabel(color(default), color(ddefault));
-      border: 1px solid color(default);
+      @include colorLabel($colorDefault, $colorLdefault);
+      border: 1px solid $colorDefault;
       color: inherit;
       position: relative;
       padding: $paddingVertical $paddingHorizontal $paddingVertical ($iconWidth + $paddingHorizontal);
@@ -35,7 +35,7 @@
         left: 0;
         content: '';
         width: $iconWidth;
-        background: color(ddefault);
+        background: $colorLdefault;
         text-align: center;
         line-height: 200%;
       }
@@ -47,9 +47,9 @@
     &:not(:checked) {
       & + label {
         &:hover {
-          color: color(hdefault);
+          color: $colorDdefault;
           &:before {
-            color: color(default);
+            color: $colorDefault;
           }
         }
       }
@@ -86,22 +86,22 @@
 
   &.enhancedCheck-primary {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel(color(primary), color(dprimary));
+      @include colorLabel($colorPrimary, $colorDprimary);
     }
   }
   &.enhancedCheck-success {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel(color(success), color(dsuccess));
+      @include colorLabel($colorSuccess, $colorDsuccess);
     }
   }
   &.enhancedCheck-warning {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel(color(warning), color(dwarning));
+      @include colorLabel($colorWarning, $colorDwarning);
     }
   }
   &.enhancedCheck-danger {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel(color(danger), color(ddanger));
+      @include colorLabel($colorDanger, $colorDdanger);
     }
   }
 
@@ -132,8 +132,8 @@
   user-select: none;
   cursor: pointer;
   height: 2em;
-  @include colorToggle(color(default), color(ddefault));
-  border: 1px solid color(border);
+  @include colorToggle($colorDefault, $colorDdefault);
+  border: 1px solid $colorBorder;
   border-radius: $radiusDefault;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -161,16 +161,16 @@
   }
 
   &.enhancedCheck-primary {
-    @include colorToggle(color(primary), color(dprimary));
+    @include colorToggle($colorPrimary, $colorDprimary);
   }
   &.enhancedCheck-success {
-    @include colorToggle(color(success), color(dsuccess));
+    @include colorToggle(color$colorSuccess, $colorDsuccess);
   }
   &.enhancedCheck-warning {
-    @include colorToggle(color(warning), color(dwarning));
+    @include colorToggle($colorWarning, $colorDwarning);
   }
   &.enhancedCheck-danger {
-    @include colorToggle(color(danger), color(ddanger));
+    @include colorToggle($colorDanger, $colorDdanger);
   }
 
   .enhancedToggle-label {
@@ -201,7 +201,7 @@
     top: 0;
     bottom: 0;
     left: 50px;
-    border: 1px solid color(border);
+    border: 1px solid $colorBorder;
     border-radius: $radiusDefault;
     width: 20px;
     z-index: 20;

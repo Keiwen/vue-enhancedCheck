@@ -18,11 +18,9 @@ const props = defineProps({
 const DEFAULT_WIDTH = 50
 const SWITCH_WIDTH = 30
 const MIN_WIDTH = 50
-const HORIZONTAL_PADDING = 10
+const HORIZONTAL_PADDING = 5
 
 const style = ref({})
-const initLabelMaxWidth = ref(0)
-const initLabelMaxChar = ref(0)
 const labelMaxWidth = ref(0)
 const labelMaxChar = ref(0)
 const inputModel = ref(false)
@@ -38,10 +36,8 @@ onMounted(async () => {
   } else {
     generatedId.value = props.id
   }
-  initLabelMaxWidth.value = getLabelMaxWidth()
-  initLabelMaxChar.value = getLabelMaxChar()
-  labelMaxWidth.value = initLabelMaxWidth.value
-  labelMaxChar.value = initLabelMaxChar.value
+  labelMaxWidth.value = getLabelMaxWidth()
+  labelMaxChar.value = getLabelMaxChar()
   inputModel.value = props.modelValue
   if (props.checked) inputModel.value = true
   computeStyle()
@@ -84,7 +80,8 @@ const getLabelMaxChar = () => {
 const updateLabels = () => {
   const newMaxChar = getLabelMaxChar()
   if (newMaxChar !== labelMaxChar.value) {
-    labelMaxWidth.value = initLabelMaxWidth.value / initLabelMaxChar.value * newMaxChar
+    labelMaxWidth.value = (labelMaxWidth.value) / labelMaxChar.value * newMaxChar
+    labelMaxChar.value = newMaxChar
     if (labelMaxWidth.value < MIN_WIDTH) labelMaxWidth.value = MIN_WIDTH
     computeStyle()
   }

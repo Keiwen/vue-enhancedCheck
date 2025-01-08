@@ -110,6 +110,9 @@
           <option value="warning">Warning</option>
           <option value="danger">Danger</option>
         </select>
+
+        <br/>
+        <button @click="changeGroup()">Select First and Second</button>
       </div>
 
     </fieldset>
@@ -270,6 +273,11 @@ export default {
       tc_rounded: true,
       tc_styleOn: 'success',
       tc_styleOff: 'danger'
+    }
+  },
+  methods: {
+    changeGroup () {
+      this.gc_model = ['First', 'Second']
     }
   }
 }

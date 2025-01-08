@@ -1,3 +1,46 @@
+<script setup>
+import { ref } from 'vue'
+import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle } from '../src/index'
+
+const scModel = ref(false)
+const scLabel = ref('Simple')
+const scDisabled = ref(false)
+const scRounded = ref(false)
+const scAnimate = ref(false)
+const scSubclass = ref('primary')
+const gcModel = ref(['Second', 'Third'])
+const gcVal1 = ref('First')
+const gcVal2 = ref('Second')
+const gcVal3 = ref('Third')
+const gcDisabled = ref(false)
+const gcRounded = ref(false)
+const gcAnimate = ref(false)
+const gcInline = ref(true)
+const gcCombine = ref(true)
+const gcSubclass = ref('warning')
+const rcModel = ref('B')
+const rcVal1 = ref('A')
+const rcVal2 = ref('B')
+const rcVal3 = ref('C')
+const rcDisabled = ref(false)
+const rcRounded = ref(true)
+const rcAnimate = ref(true)
+const rcInline = ref(false)
+const rcSubclass = ref('success')
+const tcModel = ref(false)
+const tcLabelOn = ref('Mandatory')
+const tcLabelOff = ref('Optional')
+const tcDisabled = ref(false)
+const tcRounded = ref(true)
+const tcStyleOn = ref('success')
+const tcStyleOff = ref('danger')
+
+// methods
+const changeGroup = () => {
+  gcModel.value = ['First', 'Second']
+}
+</script>
+
 <template>
   <div class="container">
 
@@ -6,32 +49,32 @@
 
       <div class="playWith">
         <h2>Play with it</h2>
-        <enhanced-check :label="sc_label" :subClass="sc_subclass" v-model="sc_model"
-                        :disabled="sc_disabled" :rounded="sc_rounded" :animate="sc_animate">
+        <enhanced-check :label="scLabel" :subClass="scSubclass" v-model="scModel"
+                        :disabled="scDisabled" :rounded="scRounded" :animate="scAnimate">
 
         </enhanced-check>
         <br/>
-        Model: {{ sc_model }}
+        Model: {{ scModel }}
 
         <hr/>
 
-        <label for="sc_label">Label:</label>
-        <input type="text" v-model="sc_label" id="sc_label"/>
+        <label for="scLabel">Label:</label>
+        <input type="text" v-model="scLabel" id="scLabel"/>
 
-        <label for="sc_model">Checked:</label>
-        <input type="checkbox" v-model="sc_model" id="sc_model"/>
+        <label for="scModel">Checked:</label>
+        <input type="checkbox" v-model="scModel" id="scModel"/>
 
-        <label for="sc_disabled">Disabled:</label>
-        <input type="checkbox" v-model="sc_disabled" id="sc_disabled"/>
+        <label for="scDisabled">Disabled:</label>
+        <input type="checkbox" v-model="scDisabled" id="scDisabled"/>
 
-        <label for="sc_rounded">Rounded:</label>
-        <input type="checkbox" v-model="sc_rounded" id="sc_rounded"/>
+        <label for="scRounded">Rounded:</label>
+        <input type="checkbox" v-model="scRounded" id="scRounded"/>
 
-        <label for="sc_animate">Transition:</label>
-        <input type="checkbox" v-model="sc_animate" id="sc_animate"/>
+        <label for="scAnimate">Transition:</label>
+        <input type="checkbox" v-model="scAnimate" id="scAnimate"/>
 
-        <label for="sc_subclass">Style:</label>
-        <select v-model="sc_subclass" id="sc_subclass">
+        <label for="scSubclass">Style:</label>
+        <select v-model="scSubclass" id="scSubclass">
           <option value="default">Default</option>
           <option value="primary">Primary</option>
           <option value="success">Success</option>
@@ -68,42 +111,42 @@
       <div class="playWith">
         <h2>Play with it</h2>
 
-        <enhanced-check-group :label="['First', 'Second', 'Third']" :subClass="gc_subclass" v-model="gc_model"
-                              :disabled="gc_disabled" :rounded="gc_rounded" :animate="gc_animate"
-                              :inline="gc_inline" :combine="gc_combine" :value="[gc_val1, gc_val2, gc_val3]">
+        <enhanced-check-group :label="['First', 'Second', 'Third']" :subClass="gcSubclass" v-model="gcModel"
+                              :disabled="gcDisabled" :rounded="gcRounded" :animate="gcAnimate"
+                              :inline="gcInline" :combine="gcCombine" :value="[gcVal1, gcVal2, gcVal3]">
 
         </enhanced-check-group>
         <br/>
-        Model: {{ gc_model }}
+        Model: {{ gcModel }}
 
         <hr/>
 
-        <label for="gc_val1">Value first:</label>
-        <input type="text" v-model="gc_val1" id="gc_val1"/>
+        <label for="gcVal1">Value first:</label>
+        <input type="text" v-model="gcVal1" id="gcVal1"/>
 
-        <label for="gc_val2">Value second:</label>
-        <input type="text" v-model="gc_val2" id="gc_val2"/>
+        <label for="gcVal2">Value second:</label>
+        <input type="text" v-model="gcVal2" id="gcVal2"/>
 
-        <label for="gc_val3">Value third:</label>
-        <input type="text" v-model="gc_val3" id="gc_val3"/>
+        <label for="gcVal3">Value third:</label>
+        <input type="text" v-model="gcVal3" id="gcVal3"/>
 
-        <label for="gc_disabled">Disabled:</label>
-        <input type="checkbox" v-model="gc_disabled" id="gc_disabled"/>
+        <label for="gcDisabled">Disabled:</label>
+        <input type="checkbox" v-model="gcDisabled" id="gcDisabled"/>
 
-        <label for="gc_rounded">Rounded:</label>
-        <input type="checkbox" v-model="gc_rounded" id="gc_rounded"/>
+        <label for="gcRounded">Rounded:</label>
+        <input type="checkbox" v-model="gcRounded" id="gcRounded"/>
 
-        <label for="gc_animate">Transition:</label>
-        <input type="checkbox" v-model="gc_animate" id="gc_animate"/>
+        <label for="gcAnimate">Transition:</label>
+        <input type="checkbox" v-model="gcAnimate" id="gcAnimate"/>
 
-        <label for="gc_inline">Inline:</label>
-        <input type="checkbox" v-model="gc_inline" id="gc_inline"/>
+        <label for="gcInline">Inline:</label>
+        <input type="checkbox" v-model="gcInline" id="gcInline"/>
 
-        <label for="gc_combine">Combine:</label>
-        <input type="checkbox" v-model="gc_combine" id="gc_combine"/>
+        <label for="gcCombine">Combine:</label>
+        <input type="checkbox" v-model="gcCombine" id="gcCombine"/>
 
-        <label for="gc_subclass">Style:</label>
-        <select v-model="gc_subclass" id="gc_subclass">
+        <label for="gcSubclass">Style:</label>
+        <select v-model="gcSubclass" id="gcSubclass">
           <option value="default">Default</option>
           <option value="primary">Primary</option>
           <option value="success">Success</option>
@@ -125,42 +168,42 @@
       <div class="playWith">
         <h2>Play with it</h2>
 
-        <enhanced-check-radio :label="['Element A', 'Element B', 'Element C']" :subClass="rc_subclass" v-model="rc_model"
-                              :disabled="rc_disabled" :rounded="rc_rounded" :animate="rc_animate"
-                              :inline="rc_inline" :value="[rc_val1, rc_val2, rc_val3]">
+        <enhanced-check-radio :label="['Element A', 'Element B', 'Element C']" :subClass="rcSubclass" v-model="rcModel"
+                              :disabled="rcDisabled" :rounded="rcRounded" :animate="rcAnimate"
+                              :inline="rcInline" :value="[rcVal1, rcVal2, rcVal3]">
 
         </enhanced-check-radio>
         <br/>
-        Model: {{ rc_model }}
+        Model: {{ rcModel }}
 
         <hr/>
 
-        <label for="rc_model">Model:</label>
-        <input type="text" v-model="rc_model" id="rc_model"/>
+        <label for="rcModel">Model:</label>
+        <input type="text" v-model="rcModel" id="rcModel"/>
 
-        <label for="rc_val1">Value first:</label>
-        <input type="text" v-model="rc_val1" id="rc_val1"/>
+        <label for="rcVal1">Value first:</label>
+        <input type="text" v-model="rcVal1" id="rcVal1"/>
 
-        <label for="rc_val2">Value second:</label>
-        <input type="text" v-model="rc_val2" id="rc_val2"/>
+        <label for="rcVal2">Value second:</label>
+        <input type="text" v-model="rcVal2" id="rcVal2"/>
 
-        <label for="rc_val3">Value third:</label>
-        <input type="text" v-model="rc_val3" id="rc_val3"/>
+        <label for="rcVal3">Value third:</label>
+        <input type="text" v-model="rcVal3" id="rcVal3"/>
 
-        <label for="rc_disabled">Disabled:</label>
-        <input type="checkbox" v-model="rc_disabled" id="rc_disabled"/>
+        <label for="rcDisabled">Disabled:</label>
+        <input type="checkbox" v-model="rcDisabled" id="rcDisabled"/>
 
-        <label for="rc_rounded">Rounded:</label>
-        <input type="checkbox" v-model="rc_rounded" id="rc_rounded"/>
+        <label for="rcRounded">Rounded:</label>
+        <input type="checkbox" v-model="rcRounded" id="rcRounded"/>
 
-        <label for="rc_animate">Transition:</label>
-        <input type="checkbox" v-model="rc_animate" id="rc_animate"/>
+        <label for="rcAnimate">Transition:</label>
+        <input type="checkbox" v-model="rcAnimate" id="rcAnimate"/>
 
-        <label for="rc_inline">Inline:</label>
-        <input type="checkbox" v-model="rc_inline" id="rc_inline"/>
+        <label for="rcInline">Inline:</label>
+        <input type="checkbox" v-model="rcInline" id="rcInline"/>
 
-        <label for="rc_subclass">Style:</label>
-        <select v-model="rc_subclass" id="rc_subclass">
+        <label for="rcSubclass">Style:</label>
+        <select v-model="rcSubclass" id="rcSubclass">
           <option value="default">Default</option>
           <option value="primary">Primary</option>
           <option value="success">Success</option>
@@ -179,32 +222,32 @@
       <div class="playWith">
         <h2>Play with it</h2>
 
-        <enhanced-toggle :labelOn="tc_labelOn" :labelOff="tc_labelOff" :styleOn="tc_styleOn" :styleOff="tc_styleOff" v-model="tc_model"
-                         :disabled="tc_disabled" :rounded="tc_rounded">
+        <enhanced-toggle :labelOn="tcLabelOn" :labelOff="tcLabelOff" :styleOn="tcStyleOn" :styleOff="tcStyleOff" v-model="tcModel"
+                         :disabled="tcDisabled" :rounded="tcRounded">
 
         </enhanced-toggle>
         <br/>
-        Model: {{ tc_model }}
+        Model: {{ tcModel }}
 
         <hr/>
 
-        <label for="tc_labelOn">Label on:</label>
-        <input type="text" v-model="tc_labelOn" id="tc_labelOn"/>
+        <label for="tcLabelOn">Label on:</label>
+        <input type="text" v-model="tcLabelOn" id="tcLabelOn"/>
 
-        <label for="tc_labelOff">Label off:</label>
-        <input type="text" v-model="tc_labelOff" id="tc_labelOff"/>
+        <label for="tcLabelOff">Label off:</label>
+        <input type="text" v-model="tcLabelOff" id="tcLabelOff"/>
 
-        <label for="tc_model">Checked:</label>
-        <input type="checkbox" v-model="tc_model" id="tc_model"/>
+        <label for="tcModel">Checked:</label>
+        <input type="checkbox" v-model="tcModel" id="tcModel"/>
 
-        <label for="tc_disabled">Disabled:</label>
-        <input type="checkbox" v-model="tc_disabled" id="tc_disabled"/>
+        <label for="tcDisabled">Disabled:</label>
+        <input type="checkbox" v-model="tcDisabled" id="tcDisabled"/>
 
-        <label for="tc_rounded">Rounded:</label>
-        <input type="checkbox" v-model="tc_rounded" id="tc_rounded"/>
+        <label for="tcRounded">Rounded:</label>
+        <input type="checkbox" v-model="tcRounded" id="tcRounded"/>
 
-        <label for="tc_styleOn">Style on:</label>
-        <select v-model="tc_styleOn" id="tc_styleOn">
+        <label for="tcStyleOn">Style on:</label>
+        <select v-model="tcStyleOn" id="tcStyleOn">
           <option value="default">Default</option>
           <option value="primary">Primary</option>
           <option value="success">Success</option>
@@ -212,8 +255,8 @@
           <option value="danger">Danger</option>
         </select>
 
-        <label for="tc_styleOff">Style off:</label>
-        <select v-model="tc_styleOff" id="tc_styleOff">
+        <label for="tcStyleOff">Style off:</label>
+        <select v-model="tcStyleOff" id="tcStyleOff">
           <option value="default">Default</option>
           <option value="primary">Primary</option>
           <option value="success">Success</option>
@@ -233,55 +276,6 @@
 
   </div>
 </template>
-
-<script>
-import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle } from '../src/index'
-
-export default {
-  components: { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle },
-  data () {
-    return {
-      sc_model: false,
-      sc_label: 'Simple',
-      sc_disabled: false,
-      sc_rounded: false,
-      sc_animate: false,
-      sc_subclass: 'primary',
-      gc_model: ['Second', 'Third'],
-      gc_val1: 'First',
-      gc_val2: 'Second',
-      gc_val3: 'Third',
-      gc_disabled: false,
-      gc_rounded: false,
-      gc_animate: false,
-      gc_inline: true,
-      gc_combine: true,
-      gc_subclass: 'warning',
-      rc_model: 'B',
-      rc_val1: 'A',
-      rc_val2: 'B',
-      rc_val3: 'C',
-      rc_disabled: false,
-      rc_rounded: true,
-      rc_animate: true,
-      rc_inline: false,
-      rc_subclass: 'success',
-      tc_model: false,
-      tc_labelOn: 'Mandatory',
-      tc_labelOff: 'Optional',
-      tc_disabled: false,
-      tc_rounded: true,
-      tc_styleOn: 'success',
-      tc_styleOff: 'danger'
-    }
-  },
-  methods: {
-    changeGroup () {
-      this.gc_model = ['First', 'Second']
-    }
-  }
-}
-</script>
 
 <style>
 h1 {

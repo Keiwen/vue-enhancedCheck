@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, defineProps, defineEmits } from 'vue'
+import { ref, computed, watch, onMounted, defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
   modelValue: Boolean,
@@ -28,6 +28,10 @@ onMounted(async () => {
   inputModel.value = props.modelValue
 })
 
+watch(() => props.modelValue, (newValue, oldValue) => {
+  if (newValue !== inputModel.value) inputModel.value = newValue
+})
+
 // computed
 const computedClass = computed(() => {
   let computedClass = 'enhancedCheck-' + props.subClass
@@ -47,7 +51,7 @@ const inputChange = () => {
   <div class="enhancedCheck" :class="computedClass">
     <div>
       <input type="checkbox" :id="generatedId" :name="name" :value="value" @change="inputChange()" :disabled="disabled" v-model="inputModel" :checked="modelValue">
-      <label :for="generatedId">{{ label }}</label>
+      <label :for="generatedId">{{ label }} and {{ inputModel }}</label>
     </div>
   </div>
 </template>

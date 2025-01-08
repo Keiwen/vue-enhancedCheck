@@ -34,7 +34,7 @@ const emit = defineEmits(['update:modelValue'])
 
 onMounted(async () => {
   if (props.id === '') {
-    generatedId.value = 'enhancedToggle_' + Math.random().toString(36).substr(2, 9)
+    generatedId.value = 'enhancedToggle_' + Math.random().toString(36).substring(2, 9)
   } else {
     generatedId.value = props.id
   }
@@ -111,8 +111,6 @@ const computeStyle = () => {
 </template>
 
 <style lang="scss" scoped>
-    @import '../styles/common.scss';
-
     .enhancedToggle {
         width: var(--toggleWidth);
         .labelOn {

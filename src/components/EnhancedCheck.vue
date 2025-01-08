@@ -21,7 +21,7 @@ const emit = defineEmits(['update:modelValue'])
 
 onMounted(async () => {
   if (props.id === '') {
-    generatedId.value = 'enhancedCheck_' + Math.random().toString(36).substr(2, 9)
+    generatedId.value = 'enhancedCheck_' + Math.random().toString(36).substring(2, 9)
   } else {
     generatedId.value = props.id
   }
@@ -56,7 +56,5 @@ const inputChange = () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-    @import '../styles/common.scss';
-
+<style>
 </style>

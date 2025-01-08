@@ -22,7 +22,7 @@ const emit = defineEmits(['update:modelValue'])
 
 onMounted(async () => {
   if (props.id === '') {
-    generatedId.value = 'enhancedCheckRadio_' + Math.random().toString(36).substr(2, 9)
+    generatedId.value = 'enhancedCheckRadio_' + Math.random().toString(36).substring(2, 9)
   } else {
     generatedId.value = props.id
   }
@@ -97,6 +97,5 @@ const generateListFromProp = (propValue) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-    @import '../styles/common.scss';
+<style>
 </style>

@@ -92,6 +92,5 @@ const generateListFromProp = (propValue) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-    @import '../styles/common.scss';
+<style>
 </style>

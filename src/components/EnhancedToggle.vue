@@ -43,6 +43,7 @@ onMounted(async () => {
   labelMaxWidth.value = initLabelMaxWidth.value
   labelMaxChar.value = initLabelMaxChar.value
   inputModel.value = props.modelValue
+  if (props.checked) inputModel.value = true
   computeStyle()
 })
 

@@ -26,6 +26,7 @@ onMounted(async () => {
     generatedId.value = props.id
   }
   inputModel.value = props.modelValue
+  if (props.checked) inputModel.value = true
 })
 
 watch(() => props.modelValue, (newValue, oldValue) => {

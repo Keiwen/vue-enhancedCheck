@@ -2,23 +2,20 @@
 [![npm](https://img.shields.io/npm/v/vue-enhanced-check.svg)](https://www.npmjs.com/package/vue-enhanced-check)
 [![npm](https://img.shields.io/npm/dt/vue-enhanced-check.svg)](https://www.npmjs.com/package/vue-enhanced-check)
 
-Enhanced checkboxes /radio input, component for vue 2+.
+Enhanced checkboxes / radio input, component for vue 3. For vue 2, please check 1.5.X releases.
 
 [Live demo here](https://keiwen.github.io/vue-enhancedCheck/)
 
-*Note that unicode is used for 'icons'. Therefore design can change according to your browser. It is still possible to override CSS style with '!important' instruction (checked and hover styles)*
-
-- **Issue with ES2015** -> switch away in version 1.4
-- **Issue with bootstrap 3.3 on toggle component** -> style fix in version 1.5
+*Note that unicode is used for 'icons'. Therefore design can change according to your browser. It is still possible to override CSS style (checked and hover styles)*
 
 > Based on first [enhancedCheck project](https://github.com/Keiwen/enhancedCheck) (CSS/JS)
 
 ## Global use
-- npm install
+- npm install in console
 ```
 npm install --save vue-enhanced-check
 ```
-- import components
+- import components in your code
 ```
 import { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle } from 'vue-enhanced-check'
 ```
@@ -26,12 +23,11 @@ or only one according to your needs
 ```
 import { EnhancedCheck } from 'vue-enhanced-check'
 ```
-- declare use or imported components in your vue script
+you may also import them globally in your app
 ```
-export default {
-    components: { EnhancedCheck, EnhancedCheckGroup, EnhancedCheckRadio, EnhancedToggle },
-    methods: ...
-}
+import { createApp } from "vue";
+import vueEnhancedCheck from "vue-enhanced-check";
+createApp(App).use(vueEnhancedCheck);
 ```
 - Use components as described below
 
@@ -51,7 +47,7 @@ Label is prefixed by 'check' icon
 ```
 
 
-| Prop | Type | Note
+| Prop | Type | Note |
 | :--- | :--- | ---: |
 | `label` | `String` | **REQUIRED**: by design, label is a main part of the display |
 | `id` | `String` | id of input and associated label. |
@@ -82,7 +78,7 @@ As a classic simple checkbox, model bound to check state: true or false
 ```
 
 
-| Prop | Type | Note
+| Prop | Type | Note |
 | :--- | :--- | ---: |
 | `label` | `Array` | **REQUIRED** |
 | `value` | `Array` | Value for each input. By default equal to label |
@@ -115,7 +111,7 @@ Label is prefixed by 'dot' icon
 ```
 
 
-| Prop | Type | Note
+| Prop | Type | Note |
 | :--- | :--- | ---: |
 | `label` | `Array` | **REQUIRED** |
 | `name` | `String` | name of classic input. |
@@ -144,7 +140,7 @@ Checkbox is replaced by 2 switching labels, for on and off states
 ```
 
 
-| Prop | Type | Note
+| Prop | Type | Note |
 | :--- | :--- | ---: |
 | `labelOn` | `String` | Label display for 'on' state (checked). Default is 'On' |
 | `labelOff` | `String` | Label display for 'off' state (unchecked). Default is 'Off' |
@@ -159,6 +155,7 @@ Checkbox is replaced by 2 switching labels, for on and off states
 As a classic simple checkbox, model bound to check state: true or false
 
 ## Override style
+### Color usecase
 You can define your own check color by adding a specific style
 
 For example, let's define a 'custom' sub class.
@@ -183,27 +180,46 @@ Full less sample:
 .enhancedCheck.enhancedCheck-custom {
   input[type="radio"], input[type="checkbox"] {
     &:checked + label:before {
-      background: $color;
+      background: fuchsia;
       color: white;
     }
     &:not(:checked) + label:hover {
-      border: 1px solid $color;
+      border: 1px solid fuchsia;
     }
     &:checked:disabled + label:before {
-      background: $color-disabled;
+      background: rosybrown;
     }
     &:not(:checked):disabled + label:hover {
-      border: 1px solid $color-disabled;
+      border: 1px solid rosybrown;
+    }
+  }
+}
+```
+Of course, you can replace class `.enhancedCheck-custom` by `.enhancedCheck-primary`
+in previous example to just override primary color,
+instead of create a custom class.
+
+### Icon usecase
+You can also override icon used.
+For example, the following CSS will use start icons instead of checkmarks
+```
+.enhancedCheck {
+  input[type="checkbox"] {
+    &:not(:checked) + label:hover:before {
+      content: '\2606';
+    }
+    &:checked + label:before {
+      content: '\2606';
     }
   }
 }
 ```
 
-
 ## Contribution
+This library is managed with vue-CLI
 - Fork the repository
 - Run `npm install`
-- You can run `npm run dev`, site is at http://localhost:8081.
+- You can run `npm run serve`, the script will start the mini demo application
 - Do your stuff
 - When you're done, run `npm run build` command and commit your work for a pull request.
 

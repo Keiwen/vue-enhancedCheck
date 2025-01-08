@@ -164,7 +164,7 @@
     @include colorToggle($colorPrimary, $colorDprimary);
   }
   &.enhancedCheck-success {
-    @include colorToggle(color$colorSuccess, $colorDsuccess);
+    @include colorToggle($colorSuccess, $colorDsuccess);
   }
   &.enhancedCheck-warning {
     @include colorToggle($colorWarning, $colorDwarning);

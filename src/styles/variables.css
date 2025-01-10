@@ -1,0 +1,25 @@
+:root {
+  --enhanced-check-color-border: #51626f;
+  --enhanced-check-color-default: #aaaaaa;
+  --enhanced-check-color-light-default: #dddddd;
+  --enhanced-check-color-dark-default: #777777;
+  --enhanced-check-color-primary: #337ab7;
+  --enhanced-check-color-dark-primary: rgba(51,122,183,0.5);
+  --enhanced-check-color-success: #5cb85c;
+  --enhanced-check-color-dark-success: rgba(92,184,92,0.5);
+  --enhanced-check-color-danger: #d9534f;
+  --enhanced-check-color-dark-danger: rgba(217,83,79,0.5);
+  --enhanced-check-color-warning: #f0ad4e;
+  --enhanced-check-color-dark-warning: rgba(240,173,78,0.5);
+  --enhanced-check-radius-default: 3px;
+  --enhanced-check-radius-round: 25px;
+  --enhanced-check-icon-width: 30px;
+  --enhanced-check-padding-vertical: 5px;
+  --enhanced-check-padding-horizontal: 5px;
+  --enhanced-check-padding-horizontal-toggle: 10px;
+  --enhanced-check-icon-checkbox: '\2714';
+  --enhanced-check-icon-combine: '\271A';
+  --enhanced-check-icon-radio: '\2B24';
+  --enhanced-check-transition-time: 1s;
+  --enhanced-check-transition-time-toggle: 0.5s;
+}

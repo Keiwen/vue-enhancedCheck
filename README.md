@@ -155,8 +155,24 @@ Checkbox is replaced by 2 switching labels, for on and off states
 As a classic simple checkbox, model bound to check state: true or false
 
 ## Override style
-### Color usecase
-You can define your own check color by adding a specific style
+### Base variable override usecase
+You can override base CSS variable used, like colors or icons.
+After importing this library style, override CSS variable in root.
+For example, the following CSS will:
+- use star icons instead of checkmarks for checkboxes
+- set primary color to fuchsia and primary borders to rosybrown
+```
+:root {
+  --enhanced-check-icon-checkbox: '\2606';
+  --enhanced-check-color-primary: fuchsia;
+  --enhanced-check-color-dark-primary: rosybrown;
+}
+```
+Refer to `src/styles/variables.css` for the full list of variable used
+in this library that you can override.
+
+### New style usecase
+You can also define your own check class by adding specific style
 
 For example, let's define a 'custom' sub class.
 ```
@@ -191,25 +207,6 @@ Full less sample:
     }
     &:not(:checked):disabled + label:hover {
       border: 1px solid rosybrown;
-    }
-  }
-}
-```
-Of course, you can replace class `.enhancedCheck-custom` by `.enhancedCheck-primary`
-in previous example to just override primary color,
-instead of create a custom class.
-
-### Icon usecase
-You can also override icon used.
-For example, the following CSS will use start icons instead of checkmarks
-```
-.enhancedCheck {
-  input[type="checkbox"] {
-    &:not(:checked) + label:hover:before {
-      content: '\2606';
-    }
-    &:checked + label:before {
-      content: '\2606';
     }
   }
 }

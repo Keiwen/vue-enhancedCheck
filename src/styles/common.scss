@@ -1,4 +1,4 @@
-@use './variables.scss' as *;
+@use './variables';
 @use './mixins.scss' as *;
 
 .enhancedCheck-inline {
@@ -16,16 +16,16 @@
     margin-right: 5px;
   }
   label {
-    @include labelBorderRadius($radiusDefault 0 0 $radiusDefault);
+    @include labelBorderRadius(var(--enhanced-check-radius-default) 0 0 var(--enhanced-check-radius-default));
   }
   input[type="radio"], input[type="checkbox"] {
     display: none;
     & + label {
-      @include colorLabel($colorDefault, $colorLdefault);
-      border: 1px solid $colorDefault;
+      @include colorLabel(var(--enhanced-check-color-default), var(--enhanced-check-color-light-default));
+      border: 1px solid var(--enhanced-check-color-default);
       color: inherit;
       position: relative;
-      padding: $paddingVertical $paddingHorizontal $paddingVertical ($iconWidth + $paddingHorizontal);
+      padding: var(--enhanced-check-padding-vertical) var(--enhanced-check-padding-horizontal) var(--enhanced-check-padding-vertical) calc(var(--enhanced-check-icon-width) + var(--enhanced-check-padding-horizontal));
       cursor: pointer;
       display: inline-block;
       &:before {
@@ -35,8 +35,8 @@
         bottom: 0;
         left: 0;
         content: '';
-        width: $iconWidth;
-        background: $colorLdefault;
+        width: var(--enhanced-check-icon-width);
+        background: var(--enhanced-check-color-light-default);
         text-align: center;
         line-height: 200%;
       }
@@ -48,9 +48,9 @@
     &:not(:checked) {
       & + label {
         &:hover {
-          color: $colorDdefault;
+          color: var(--enhanced-check-color-dark-default);
           &:before {
-            color: $colorDefault;
+            color: var(--enhanced-check-color-default);
           }
         }
       }
@@ -60,66 +60,66 @@
   }
   input[type="checkbox"] {
     &:not(:checked) + label:hover:before {
-      content: $iconCheckbox;
+      content: var(--enhanced-check-icon-checkbox);
     }
     &:checked + label:before {
-      content: $iconCheckbox;
+      content: var(--enhanced-check-icon-checkbox);
     }
   }
   input[type="radio"] {
     &:not(:checked) + label:hover:before {
-      content: $iconRadio;
+      content: var(--enhanced-check-icon-radio);
     }
     &:checked + label:before {
-      content: $iconRadio;
+      content: var(--enhanced-check-icon-radio);
     }
   }
   &.enhancedCheck-combine {
     input[type="checkbox"] {
       &:not(:checked) + label:hover:before {
-        content: $iconCombine;
+        content: var(--enhanced-check-icon-combine);
       }
       &:checked + label:before {
-        content: $iconCombine;
+        content: var(--enhanced-check-icon-combine);
       }
     }
   }
 
   &.enhancedCheck-primary {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel($colorPrimary, $colorDprimary);
+      @include colorLabel(var(--enhanced-check-color-primary), var(--enhanced-check-color-dark-primary));
     }
   }
   &.enhancedCheck-success {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel($colorSuccess, $colorDsuccess);
+      @include colorLabel(var(--enhanced-check-color-success), var(--enhanced-check-color-dark-success));
     }
   }
   &.enhancedCheck-warning {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel($colorWarning, $colorDwarning);
+      @include colorLabel(var(--enhanced-check-color-warning), var(--enhanced-check-color-dark-warning));
     }
   }
   &.enhancedCheck-danger {
     input[type="radio"], input[type="checkbox"] {
-      @include colorLabel($colorDanger, $colorDdanger);
+      @include colorLabel(var(--enhanced-check-color-danger), var(--enhanced-check-color-dark-danger));
     }
   }
 
   &.enhancedCheck-animate {
     label {
-      transition: color $transitionTime ease;
-      -webkit-transition: color $transitionTime ease;
+      transition: color var(--enhanced-check-transition-time) ease;
+      -webkit-transition: color var(--enhanced-check-transition-time) ease;
       &:before {
-        transition: background-color $transitionTime ease;
-        -webkit-transition: background-color $transitionTime ease;
+        transition: background-color var(--enhanced-check-transition-time) ease;
+        -webkit-transition: background-color var(--enhanced-check-transition-time) ease;
       }
     }
   }
 
   &.enhancedCheck-rounded {
     label {
-      @include labelBorderRadius($radiusRound);
+      @include labelBorderRadius(var(--enhanced-check-radius-round));
     }
   }
 
@@ -133,14 +133,14 @@
   user-select: none;
   cursor: pointer;
   height: 2em;
-  @include colorToggle($colorDefault, $colorDdefault);
-  border: 1px solid $colorBorder;
-  border-radius: $radiusDefault;
+  @include colorToggle(var(--enhanced-check-color-default), var(--enhanced-check-color-dark-default));
+  border: 1px solid var(--enhanced-check-color-border);
+  border-radius: var(--enhanced-check-radius-default);
   margin-top: 5px;
   margin-bottom: 5px;
 
   &.enhancedCheck-rounded {
-    border-radius: $radiusRound;
+    border-radius: var(--enhanced-check-radius-round);
   }
 
   label {
@@ -149,8 +149,8 @@
     bottom: 0;
     left: -100%;
     width: 200%;
-    transition: left $transitionTimeToggle;
-    -webkit-transition: left $transitionTimeToggle;
+    transition: left var(--enhanced-check-transition-time-toggle);
+    -webkit-transition: left var(--enhanced-check-transition-time-toggle);
   }
 
   &.enhancedCheck-checked label {
@@ -162,38 +162,38 @@
   }
 
   &.enhancedCheck-primary {
-    @include colorToggle($colorPrimary, $colorDprimary);
+    @include colorToggle(var(--enhanced-check-color-primary), var(--enhanced-check-color-dark-primary));
   }
   &.enhancedCheck-success {
-    @include colorToggle($colorSuccess, $colorDsuccess);
+    @include colorToggle(var(--enhanced-check-color-success), var(--enhanced-check-color-dark-success));
   }
   &.enhancedCheck-warning {
-    @include colorToggle($colorWarning, $colorDwarning);
+    @include colorToggle(var(--enhanced-check-color-warning), var(--enhanced-check-color-dark-warning));
   }
   &.enhancedCheck-danger {
-    @include colorToggle($colorDanger, $colorDdanger);
+    @include colorToggle(var(--enhanced-check-color-danger), var(--enhanced-check-color-dark-danger));
   }
 
   .enhancedToggle-label {
-    padding: $paddingVertical $paddingHorizontal;
-    transition: background $transitionTimeToggle;
-    -webkit-transition: background $transitionTimeToggle;
+    padding: var(--enhanced-check-padding-vertical) var(--enhanced-check-padding-horizontal);
+    transition: background var(--enhanced-check-transition-time-toggle);
+    -webkit-transition: background var(--enhanced-check-transition-time-toggle);
 
     position: absolute;
     top: 0;
     bottom: 0;
-    border-radius: $radiusDefault;
+    border-radius: var(--enhanced-check-radius-default);
     color: inherit;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     text-align: center;
 
     &.labelOn {
       left: 0;
-      padding-right: $paddingHorizontal + 30px;
+      padding-right: calc(var(--enhanced-check-padding-horizontal) + 30px);
     }
     &.labelOff {
       right: 0;
-      padding-left: $paddingHorizontal + 30px;
+      padding-left: calc(var(--enhanced-check-padding-horizontal) + 30px);
     }
   }
 
@@ -202,8 +202,8 @@
     top: 0;
     bottom: 0;
     left: 50px;
-    border: 1px solid $colorBorder;
-    border-radius: $radiusDefault;
+    border: 1px solid var(--enhanced-check-color-border);
+    border-radius: var(--enhanced-check-radius-default);
     width: 20px;
     z-index: 20;
     background: white;
@@ -211,7 +211,7 @@
 
   &.enhancedCheck-rounded {
     .enhancedToggle-label,.enhancedToggle-switch {
-      border-radius: $radiusRound;
+      border-radius: var(--enhanced-check-radius-round);
     }
   }
 

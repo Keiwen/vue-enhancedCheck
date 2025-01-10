@@ -38,7 +38,7 @@ Label is prefixed by 'check' icon
 <enhanced-check label="Checkbox"></enhanced-check>
 ```
 ```
-<enhanced-check :label="sc_label" :subClass="sc_subclass"
+<enhanced-check :label="sc_label" :sub-class="sc_subclass"
                 v-model="sc_model" :disabled="sc_disabled"
                 :rounded="sc_rounded" :animate="sc_animate"
                 id="enhancedCheck" name="" value="">
@@ -47,16 +47,16 @@ Label is prefixed by 'check' icon
 ```
 
 
-| Prop | Type | Note |
-| :--- | :--- | ---: |
-| `label` | `String` | **REQUIRED**: by design, label is a main part of the display |
-| `id` | `String` | id of input and associated label. |
-| `name` | `String` | name of classic input. Empty by default |
-| `value` | `String` | value of classic input. Empty by default |
-| `subClass` | `String` | Same colors than bootstrap style, possible values are 'default', 'primary', 'success', 'warning', 'danger' |
-| `disabled` | `Boolean` | False by default. Prevent clic action but not direct model change |
-| `rounded` | `Boolean` | False by default. Rounded border style |
-| `animate` | `Boolean` | False by default. Add a transition on style |
+| Prop        | Type | Note |
+|:------------| :--- | ---: |
+| `label`     | `String` | **REQUIRED**: by design, label is a main part of the display |
+| `id`        | `String` | id of input and associated label. |
+| `name`      | `String` | name of classic input. Empty by default |
+| `value`     | `String` | value of classic input. Empty by default |
+| `sub-class` | `String` | Same colors than bootstrap style, possible values are 'default', 'primary', 'success', 'warning', 'danger' |
+| `disabled`  | `Boolean` | False by default. Prevent clic action but not direct model change |
+| `rounded`   | `Boolean` | False by default. Rounded border style |
+| `animate`   | `Boolean` | False by default. Add a transition on style |
 
 As a classic simple checkbox, model bound to check state: true or false
 
@@ -67,7 +67,7 @@ As a classic simple checkbox, model bound to check state: true or false
 ```
 ```
 <enhanced-check-group :label="['First', 'Second', 'Third']"
-                      :subClass="gc_subclass" v-model="gc_model"
+                      :sub-class="gc_subclass" v-model="gc_model"
                       :disabled="gc_disabled" :rounded="gc_rounded"
                       :animate="gc_animate" :inline="gc_inline"
                       :combine="gc_combine"
@@ -78,18 +78,18 @@ As a classic simple checkbox, model bound to check state: true or false
 ```
 
 
-| Prop | Type | Note |
-| :--- | :--- | ---: |
-| `label` | `Array` | **REQUIRED** |
-| `value` | `Array` | Value for each input. By default equal to label |
-| `id` | `String`/`Array` | id of input and associated label. If string provided, each element id will have a counter as suffix |
-| `name` | `String`/`Array` | name of classic input. Use array to specify different names |
-| `subClass` | `String` | *Same than checkbox* |
-| `disabled` | `Boolean` | *Same than checkbox* |
-| `rounded` | `Boolean` | *Same than checkbox* |
-| `animate` | `Boolean` | *Same than checkbox* |
-| `inline` | `Boolean` | False by default. Turn all input as inline-block |
-| `combine` | `Boolean` | False by default. Turn 'check' icon into 'plus' icon |
+| Prop        | Type | Note |
+|:------------| :--- | ---: |
+| `label`     | `Array` | **REQUIRED** |
+| `value`     | `Array` | Value for each input. By default equal to label |
+| `id`        | `String`/`Array` | id of input and associated label. If string provided, each element id will have a counter as suffix |
+| `name`      | `String`/`Array` | name of classic input. Use array to specify different names |
+| `sub-class` | `String` | *Same than checkbox* |
+| `disabled`  | `Boolean` | *Same than checkbox* |
+| `rounded`   | `Boolean` | *Same than checkbox* |
+| `animate`   | `Boolean` | *Same than checkbox* |
+| `inline`    | `Boolean` | False by default. Turn all input as inline-block |
+| `combine`   | `Boolean` | False by default. Turn 'check' icon into 'plus' icon |
 
 As classic multiple checkboxes, model bound to array of value from checked input
 
@@ -101,7 +101,7 @@ Label is prefixed by 'dot' icon
 ```
 ```
 <enhanced-check-radio :label="['Element A', 'Element B', 'Element C']"
-                      name="radiotest" :subClass="rc_subclass"
+                      name="radiotest" :sub-class="rc_subclass"
                       v-model="rc_model" :disabled="rc_disabled"
                       :rounded="rc_rounded" :animate="rc_animate"
                       :inline="rc_inline" id="enhancedCheckRadio" 
@@ -111,17 +111,17 @@ Label is prefixed by 'dot' icon
 ```
 
 
-| Prop | Type | Note |
-| :--- | :--- | ---: |
-| `label` | `Array` | **REQUIRED** |
-| `name` | `String` | name of classic input. |
-| `id` | `String`/`Array` | id of input and associated label. If string provided, each element id will have a counter as suffix |
-| `value` | `Array` | Value for each input. By default equal to label |
-| `subClass` | `String` | *Same than checkbox* |
-| `disabled` | `Boolean` | *Same than checkbox* |
-| `rounded` | `Boolean` | *Same than checkbox* |
-| `animate` | `Boolean` | *Same than checkbox* |
-| `inline` | `Boolean` | *Same than checkbox group* |
+| Prop        | Type | Note |
+|:------------| :--- | ---: |
+| `label`     | `Array` | **REQUIRED** |
+| `name`      | `String` | name of classic input. |
+| `id`        | `String`/`Array` | id of input and associated label. If string provided, each element id will have a counter as suffix |
+| `value`     | `Array` | Value for each input. By default equal to label |
+| `sub-class` | `String` | *Same than checkbox* |
+| `disabled`  | `Boolean` | *Same than checkbox* |
+| `rounded`   | `Boolean` | *Same than checkbox* |
+| `animate`   | `Boolean` | *Same than checkbox* |
+| `inline`    | `Boolean` | *Same than checkbox group* |
 
 As classic radio buttons, model bound to value from checked input
 
@@ -131,8 +131,8 @@ Checkbox is replaced by 2 switching labels, for on and off states
 <enhanced-toggle></enhanced-check>
 ```
 ```
-<enhanced-toggle :labelOn="tc_labelOn" :labelOff="tc_labelOff"
-                 :styleOn="tc_styleOn" :styleOff="tc_styleOff"
+<enhanced-toggle :label-cn="tc_labelOn" :label-off="tc_labelOff"
+                 :style-on="tc_styleOn" :style-off="tc_styleOff"
                  v-model="tc_model"
                  :disabled="tc_disabled" :rounded="tc_rounded"
                  id="enhancedToggle" name="">
@@ -140,17 +140,17 @@ Checkbox is replaced by 2 switching labels, for on and off states
 ```
 
 
-| Prop | Type | Note |
-| :--- | :--- | ---: |
-| `labelOn` | `String` | Label display for 'on' state (checked). Default is 'On' |
-| `labelOff` | `String` | Label display for 'off' state (unchecked). Default is 'Off' |
-| `styleOn` | `String` | style for 'on' state (checked), see checkbox's subclass. Default is primary |
-| `styleOff` | `String` | style for 'off' state (unchecked), see checkbox's subclass. Default is default |
-| `id` | `String` | id of input and associated label. |
-| `name` | `String` | *Same than checkbox* |
-| `value` | `String` | *Same than checkbox* |
-| `disabled` | `Boolean` | *Same than checkbox* |
-| `rounded` | `Boolean` | *Same than checkbox* |
+| Prop        | Type | Note |
+|:------------| :--- | ---: |
+| `label-on`  | `String` | Label display for 'on' state (checked). Default is 'On' |
+| `label-off` | `String` | Label display for 'off' state (unchecked). Default is 'Off' |
+| `style-on`  | `String` | style for 'on' state (checked), see checkbox's subclass. Default is primary |
+| `style-off` | `String` | style for 'off' state (unchecked), see checkbox's subclass. Default is default |
+| `id`        | `String` | id of input and associated label. |
+| `name`      | `String` | *Same than checkbox* |
+| `value`     | `String` | *Same than checkbox* |
+| `disabled`  | `Boolean` | *Same than checkbox* |
+| `rounded`   | `Boolean` | *Same than checkbox* |
 
 As a classic simple checkbox, model bound to check state: true or false
 
@@ -160,7 +160,7 @@ You can define your own check color by adding a specific style
 
 For example, let's define a 'custom' sub class.
 ```
-<enhanced-check label="Custom" subClass="custom"></enhanced-check>
+<enhanced-check label="Custom" sub-class="custom"></enhanced-check>
 ```
 
 Checkbox will get the class 'enhancedCheck-custom', that you can use in your CSS.

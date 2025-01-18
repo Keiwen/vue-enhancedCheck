@@ -1,6 +1,11 @@
 # vue-enhanced-check
-[![npm](https://img.shields.io/npm/v/vue-enhanced-check.svg)](https://www.npmjs.com/package/vue-enhanced-check)
-[![npm](https://img.shields.io/npm/dt/vue-enhanced-check.svg)](https://www.npmjs.com/package/vue-enhanced-check)
+[![npm version](https://img.shields.io/npm/v/vue-enhanced-check?logo=npm)](https://www.npmjs.com/package/vue-enhanced-check)
+[![npm downloads](https://img.shields.io/npm/dt/vue-enhanced-check?logo=npm&color=CB3837)](https://www.npmjs.com/package/vue-enhanced-check)
+[![npm downloads](https://img.shields.io/npm/unpacked-size/vue-enhanced-check?logo=npm&color=CB3837)](https://www.npmjs.com/package/vue-enhanced-check)
+
+![vue version](https://img.shields.io/badge/vue.js-3.x-4FC08D?logo=vue.js)
+![main language](https://img.shields.io/badge/language-Javascript-yellow)
+![github stars](https://img.shields.io/github/stars/keiwen/vue-enhancedCheck)
 
 Enhanced checkboxes / radio input, component for vue 3. For vue 2, please check 1.5.X releases.
 
